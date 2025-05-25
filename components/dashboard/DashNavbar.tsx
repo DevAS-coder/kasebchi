@@ -1,9 +1,10 @@
-
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+"use client"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, DoorClosed, DoorClosedIcon, LucideDoorClosed, LogOutIcon } from "lucide-react";
 import ThemeToggle from "../layout/ThemeToggle";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const navigation = [
   { name: "محصولات", href: "/dashboard/products" },
@@ -15,7 +16,7 @@ const navigation = [
 const DashNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +57,7 @@ const DashNavbar = () => {
                 )}
               </Button>
             </div>
-            <Link to="/dashboard" className="flex items-center">
+            <Link href="/dashboard" className="flex items-center">
               <div className="flex flex-row justify-center md:border-l-2 pl-4 border-white items-center text-2xl font-bold text-primary dark:text-white">
                 <img
                   src="./img/logo/logo.webp" className="hidden md:block" width={40}></img>
@@ -69,7 +70,7 @@ const DashNavbar = () => {
                 {navigation.map((link) => (
                   <Link
                     key={link.name}
-                    to={link.href}
+                    href={link.href}
                     className={`text-lg font-medium transition-colors ${location.pathname === link.href
                       ? "text-primary dark:text-yellow-400 border-b-2 border-primary dark:border-yellow-400"
                       : "text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-yellow-400"
@@ -87,12 +88,12 @@ const DashNavbar = () => {
           {/* Right side actions */}
           <div className="flex items-center md:space-x-4 space-x-reverse">
             <ThemeToggle />
-            <Link to="/dashboard/profile">
+            <Link href="/dashboard/profile">
               <Button variant="ghost" className=" dark:text-gray-300 dark:hover:text-primary">
                 <User className="h-5 w-5" />
               </Button>
             </Link>
-            <Link to="/">
+            <Link href="/">
               <Button variant="outline" className=" dark:text-gray-300 dark:hover:text-primary" onClick={handleLogOut}>
                 <h1 className="hidden md:block">خروج</h1>
                 <LogOutIcon className="h-5 w-5" />
@@ -112,7 +113,7 @@ const DashNavbar = () => {
               {navigation.map((link) => (
                 <Link
                   key={link.name}
-                  to={link.href}
+                  href={link.href}
                   className={`px-3 py-2 rounded-md text-md font-medium ${location.pathname === link.href
                     ? "bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary"
                     : "text-gray-600 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-primary"

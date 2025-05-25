@@ -11,18 +11,18 @@ interface ThemeContextProps {
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    // Try to get theme from localStorage
+  const [theme, setTheme] = useState<Theme>("light"); // Default to light theme
+
+  // Initialize theme from localStorage and system preferences
+  useEffect(() => {
     const savedTheme = localStorage.getItem("theme") as Theme;
-    
-    // Check for system preference if no saved theme
-    if (!savedTheme) {
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
       const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-      return prefersDark ? "dark" : "light";
+      setTheme(prefersDark ? "dark" : "light");
     }
-    
-    return savedTheme || "light";
-  });
+  }, []);
 
   // Toggle theme function
   const toggleTheme = () => {

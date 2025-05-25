@@ -1,23 +1,19 @@
-
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Link } from "react-router-dom";
 import ProductCartButton from "./ProductCartButton";
+import Link from "next/link";
+import { Product } from "@/types/product";
 
 interface ProductCardProps {
-  id: string;
-  name: string;
-  price: string;
-  category: string;
-  image: string;
-  layout?: "grid" | "list";
+  product: Product;
+  viewMode: "grid" | "list";
 }
 
-const ProductCard = ({ id, name, price, category, image, layout = "grid" }: ProductCardProps) => {
-  const product = { id, name, price, category, image };
+const ProductCard = ({ product, viewMode }: ProductCardProps) => {
+  const { id, name, price, category, image } = product;
   
-  if (layout === "list") {
+  if (viewMode === "list") {
     return (
-      <Link to={`/products/${id}`} className="block">
+      <Link href={`/products/${id}`} className="block">
         <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col sm:flex-row">
           <div className="sm:w-1/3 aspect-square overflow-hidden">
             <img
@@ -49,7 +45,7 @@ const ProductCard = ({ id, name, price, category, image, layout = "grid" }: Prod
   
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
-      <Link to={`/products/${id}`} className="flex-grow">
+      <Link href={`/products/${id}`} className="flex-grow">
         <div className="aspect-square overflow-hidden">
           <img
             src={image}

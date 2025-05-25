@@ -12,7 +12,7 @@ const navigation = [
   { name: "خانه", href: "/" },
   {
     name: "خدمات",
-    href: "/services",
+    href: "/categories",
     subCategories: [
       { name: "دانه قهوه", href: "/categories/coffee-beans" },
       { name: "تجهیزات صنعتی", href: "/categories/equipment" },
