@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CategoryData, SortOption } from '@/types/category';
 import { sortProducts } from '@/utils/sorting';
 import { ProductCard } from '@/components/products/ProductCard';
@@ -11,7 +11,11 @@ async function getCategoryData(id: string): Promise<CategoryData> {
   return res.json();
 }
 
-export default function CategoryPage({ params }: { params: { id: string } }) {
+export default function CategoryPage({
+  params,
+}: {
+  params: { id: string }
+}): React.ReactNode {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('name-asc');
   const [categoryData, setCategoryData] = useState<CategoryData | null>(null);
