@@ -1,5 +1,6 @@
 import CategoryClient from "@/components/shared/CategoryClient";
 
-export default function Page({ params }: { params: { id: string } }) {
-  return <CategoryClient id={params.id} />;
+export default async function Page({ params }: { params: { id: Promise<string> } }) {
+  const id = await params.id;
+  return <CategoryClient id={id} />;
 }
