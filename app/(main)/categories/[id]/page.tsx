@@ -1,10 +1,5 @@
 import CategoryClient from "@/components/shared/CategoryClient";
 
-
-type PageProps = {
-  params: { id: string };
-};
-
-export default function Page({ params }: PageProps) {
+export default function Page({ params }: { params: { id: string } }) {
   return <CategoryClient id={params.id} />;
 }
