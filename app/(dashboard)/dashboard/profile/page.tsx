@@ -32,7 +32,7 @@ function Profile() {
     setIsEditing(!isEditing);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = () => {
     // const { name, value } = e.target;
     // setEditedProfile({
     //   ...editedProfile,

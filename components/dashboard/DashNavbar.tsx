@@ -3,7 +3,6 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button";
 import { Menu, X, User, LogOutIcon } from "lucide-react";
 import ThemeToggle from "../layout/ThemeToggle";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 
