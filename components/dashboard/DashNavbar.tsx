@@ -5,6 +5,7 @@ import { Menu, X, User, DoorClosed, DoorClosedIcon, LucideDoorClosed, LogOutIcon
 import ThemeToggle from "../layout/ThemeToggle";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 const navigation = [
   { name: "محصولات", href: "/dashboard/products" },
@@ -59,8 +60,14 @@ const DashNavbar = () => {
             </div>
             <Link href="/dashboard" className="flex items-center">
               <div className="flex flex-row justify-center md:border-l-2 pl-4 border-white items-center text-2xl font-bold text-primary dark:text-white">
-                <img
-                  src="./img/logo/logo.webp" className="hidden md:block" width={40}></img>
+                <div className="hidden md:block relative w-[40px] h-[40px]">
+                  <Image
+                    src="/img/logo/logo.webp"
+                    alt="Logo"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
                 <h1 className="text-primary mr-3 dark:text-white text-lg">پنل فروشندگان</h1>
               </div>
             </Link>

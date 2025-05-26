@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CategoryData, SortOption } from '@/types/category';
 import { sortProducts } from '@/utils/sorting';
 import { ProductCard } from '@/components/products/ProductCard';
@@ -11,11 +11,27 @@ async function getCategoryData(id: string): Promise<CategoryData> {
   return res.json();
 }
 
-export default async function CategoryPage({ params }: { params: { id: string } }) {
+export default function CategoryPage({ params }: { params: { id: string } }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('name-asc');
-  
-  const categoryData = await getCategoryData(params.id);
+  const [categoryData, setCategoryData] = useState<CategoryData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getCategoryData(params.id);
+        setCategoryData(data);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch category data');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [params.id]);
 
   const handleAddToCart = async (productId: string) => {
     try {
@@ -28,6 +44,14 @@ export default async function CategoryPage({ params }: { params: { id: string } 
       console.error('Error adding to cart:', error);
     }
   };
+
+  if (isLoading) {
+    return <div className="container mx-auto px-4 py-8">Loading...</div>;
+  }
+
+  if (error || !categoryData) {
+    return <div className="container mx-auto px-4 py-8">Error: {error}</div>;
+  }
 
   const filteredProducts = categoryData.products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())

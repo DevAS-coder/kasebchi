@@ -1,12 +1,11 @@
 "use client"
-import Navbar from '@/components/layout/Navbar'
 import { WholeSalerProvider } from '@/contexts/WholeSalerInfo'
 import React, { useEffect, useState } from 'react'
 import WholeSalerAdding from '@/app/(dashboard)/dashboard/WholeSalerAdding'
 import { useRouter } from 'next/navigation'
 
 function Signinup() {
-const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const router = useRouter()
 
@@ -23,27 +22,14 @@ const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
           router.replace('/dashboard')
         } else {
           setIsAuthenticated(false)
-          // toast({
-          //   title: "خطای دسترسی",
-          //   description: "لطفا ابتدا وارد حساب کاربری خود شوید",
-          //   variant: "destructive",
-          // })
-          // navigate('/login')
         }
       } catch (error) {
         console.error("Failed to parse auth data:", error)
         setIsAuthenticated(false)
         localStorage.removeItem('auth')
-        // navigate('/login')
       }
     } else {
       setIsAuthenticated(false)
-      // toast({
-      //   title: "خطای دسترسی",
-      //   description: "لطفا ابتدا وارد حساب کاربری خود شوید",
-      //   variant: "destructive",
-      // })
-      // navigate('/login')
     }
 
     setIsLoading(false)
@@ -63,7 +49,6 @@ const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   const logout = () => {
     localStorage.removeItem('auth')
     setIsAuthenticated(false)
-    // navigate('/login')
   }
 
   if (isLoading) {
@@ -77,18 +62,14 @@ const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   return (
     <WholeSalerProvider>
       {!isAuthenticated ? (
-      <div className="flex justify-center items-center h-screen w-full ">
-        <div>
-          <WholeSalerAdding auth={isAuthenticated} setAuth={setIsAuthenticated}/>
+        <div className="flex justify-center items-center h-screen w-full ">
+          <div>
+            <WholeSalerAdding auth={isAuthenticated} setAuth={setIsAuthenticated}/>
+          </div>
         </div>
-      </div>
-      ) : null
-
-    
-    }
+      ) : null}
     </WholeSalerProvider>
   )
 }
-
 
 export default Signinup

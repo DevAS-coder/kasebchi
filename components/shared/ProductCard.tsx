@@ -1,6 +1,7 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import ProductCartButton from "./ProductCartButton";
 import Link from "next/link";
+import Image from "next/image";
 import { Product } from "@/types/product";
 
 interface ProductCardProps {
@@ -15,11 +16,13 @@ const ProductCard = ({ product, viewMode }: ProductCardProps) => {
     return (
       <Link href={`/products/${id}`} className="block">
         <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col sm:flex-row">
-          <div className="sm:w-1/3 aspect-square overflow-hidden">
-            <img
+          <div className="sm:w-1/3 aspect-square overflow-hidden relative">
+            <Image
               src={image}
               alt={name}
-              className="h-full w-full object-cover transition-transform duration-300 hover:scale-110"
+              fill
+              className="object-cover transition-transform duration-300 hover:scale-110"
+              sizes="(max-width: 640px) 100vw, 33vw"
             />
           </div>
           <div className="flex flex-col justify-between flex-grow p-4">
@@ -46,11 +49,13 @@ const ProductCard = ({ product, viewMode }: ProductCardProps) => {
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 h-full flex flex-col">
       <Link href={`/products/${id}`} className="flex-grow">
-        <div className="aspect-square overflow-hidden">
-          <img
+        <div className="aspect-square overflow-hidden relative">
+          <Image
             src={image}
             alt={name}
-            className="h-full w-full object-cover transition-transform duration-300 hover:scale-110"
+            fill
+            className="object-cover transition-transform duration-300 hover:scale-110"
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
         </div>
         <CardContent className="p-4">

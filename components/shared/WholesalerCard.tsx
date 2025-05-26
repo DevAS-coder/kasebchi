@@ -1,8 +1,8 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, CheckCircle } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface WholesalerCardProps {
   id: string;
@@ -31,10 +31,12 @@ const WholesalerCard = ({
     <Link href={`/wholesalers/${id}`} className="block transition-all duration-300">
       <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         <div className="h-32 overflow-hidden relative">
-          <img
+          <Image
             src={image}
             alt={name}
-            className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+            fill
+            className="object-cover transition-transform duration-300 hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           
@@ -49,8 +51,14 @@ const WholesalerCard = ({
         </div>
         
         <CardContent className="p-4 pt-12 relative">
-          <div className="absolute -top-8 right-4 h-16 w-16 rounded-full bg-white p-1 shadow-md transition-transform duration-300 hover:scale-110 group-hover:shadow-lg">
-            <img src={logo} alt={`${name} logo`} className="h-full w-full object-contain rounded-full" />
+          <div className="absolute -top-8 right-4 h-16 w-16 rounded-full bg-white p-1 shadow-md transition-transform duration-300 hover:scale-110 group-hover:shadow-lg relative">
+            <Image
+              src={logo}
+              alt={`${name} logo`}
+              fill
+              className="object-contain rounded-full"
+              sizes="64px"
+            />
           </div>
           
           <div className="absolute bottom-28 left-0 p-3 flex items-center gap-2 z-90">

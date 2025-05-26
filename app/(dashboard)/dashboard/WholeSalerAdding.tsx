@@ -3,11 +3,14 @@ import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Stepone from '@/app/(auth)/signinup/Stepone'
 import Steptwo from '@/app/(auth)/signinup/Steptwo'
-import { useUsers } from '@/contexts/UserContext'
 
-function WholeSalerAdding({ auth, setAuth }: any) {
+interface WholeSalerAddingProps {
+    auth: boolean;
+    setAuth: (value: boolean) => void;
+}
+
+function WholeSalerAdding({ auth, setAuth }: WholeSalerAddingProps) {
     const [SigninState, setSigninState] = useState<number>(0)
-    const { users, setUsers } = useUsers()
 
     const variants = {
         initial: (direction: number) => ({
@@ -62,7 +65,6 @@ function WholeSalerAdding({ auth, setAuth }: any) {
             </AnimatePresence>
         </div>
     )
-
 }
 
 export default WholeSalerAdding

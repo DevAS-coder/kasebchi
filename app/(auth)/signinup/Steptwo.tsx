@@ -5,8 +5,21 @@ import { useUsers } from '@/contexts/UserContext';
 import { useToast } from '@/hooks/use-toast';
 import Spinner from '@/components/ui/spinner';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
-function Steptwo({ setSigninState }: any) {
+interface SteptwoProps {
+    setSigninState: (state: number) => void;
+}
+
+interface UserState {
+    phoneNumber: string;
+    isExisted: boolean;
+    isAuthenticated: boolean;
+    user_id?: string;
+    role: string;
+}
+
+function Steptwo({ setSigninState }: SteptwoProps) {
     const [password, setpassword] = useState<string>('');
     const { users, setUsers } = useUsers()
     const toast = useToast();
@@ -16,9 +29,11 @@ function Steptwo({ setSigninState }: any) {
     const handleSubmit = (e: React.FormEvent) => {
         setIsLoading(true)
         e.preventDefault();
-        users.isExisted ?
-            authUser(users.phoneNumber, password)
-            : checkPhoneExists(users.phoneNumber, password, 'wholesaler')
+        if (users.isExisted) {
+            authUser(users.phoneNumber, password);
+        } else {
+            checkPhoneExists(users.phoneNumber, password, 'wholesaler');
+        }
     };
 
     const checkPhoneExists = async (phone: string, password: string, role: string) => {
@@ -82,7 +97,7 @@ function Steptwo({ setSigninState }: any) {
 
     return (
         <div className='flex flex-col justify-center items-center'>
-            <img src="/img/logo/logo.webp" width={100} alt="logo" />
+            <Image src="/img/logo/logo.webp" width={100} height={100} alt="logo" />
             <ArrowLeftIcon className='absolute top-2 left-2 cursor-pointer' onClick={() => setSigninState(0)} />
             {users.isExisted ? <h1 className="mt-6 font-extrabold text-md text-gray-800">خوش آمدید! رمز ورود خود را وارد کنید</h1>
                 :

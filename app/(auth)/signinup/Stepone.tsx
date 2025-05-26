@@ -3,8 +3,13 @@ import { supabase } from '@/integrations/supabase/client';
 import { useUsers } from '@/contexts/UserContext';
 import Spinner from '@/components/ui/spinner';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
-function Stepone({ setSigninState }: any) {
+interface SteponeProps {
+    setSigninState: (state: number) => void;
+}
+
+function Stepone({ setSigninState }: SteponeProps) {
     const [phoneNumber, setPhoneNumber] = useState<string>('');
     const { users, setUsers } = useUsers()
     const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +57,7 @@ function Stepone({ setSigninState }: any) {
   return (
     <div className='flex flex-col justify-center items-center'>
       <h1 className='absolute top-2 right-2 cursor-pointer' onClick={() => router.replace('/')}>بستن</h1>
-      <img src="/img/logo/logo.webp" width={100} alt="logo" />
+      <Image src="/img/logo/logo.webp" width={100} height={100} alt="logo" />
       <h1 className="mt-6 font-extrabold text-3xl text-gray-800">ورود یا ثبت نام</h1>
       <p className="mt-3 text-gray-700 text-center">لطفا شماره موبایل خود را وارد کنید.</p>
       <input

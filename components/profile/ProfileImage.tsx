@@ -1,6 +1,6 @@
 import React from 'react'
 import { Calendar } from 'lucide-react'
-import { UserProfile } from '@/pages/dashboard/Profile'
+import Image from 'next/image'
 
 interface ProfileImageProps {
   isEditing: boolean;
@@ -13,11 +13,12 @@ const ProfileImage: React.FC<ProfileImageProps> = ({
 }) => {
   return (
     <div className="md:w-1/3 mb-6 md:mb-0 flex flex-col items-center">
-      <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-amber-100 mb-4">
-        <img 
-          // src={profile.profileImage} 
+      <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-amber-100 mb-4 relative">
+        <Image 
+          src="/img/placeholder/profile.jpg"
           alt="Profile" 
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
         />
       </div>
       {isEditing && (

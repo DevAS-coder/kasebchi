@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
@@ -66,11 +67,13 @@ export default function ProductDetail() {
           <div className="grid md:grid-cols-2 gap-8 p-6">
             {/* Product Images */}
             <div className="space-y-4">
-              <div className="aspect-square rounded-lg overflow-hidden">
-                <img
+              <div className="aspect-square rounded-lg overflow-hidden relative">
+                <Image
                   src={selectedImage || product.images[0]}
                   alt={product.name}
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
               <div className="grid grid-cols-3 gap-2">
@@ -78,14 +81,16 @@ export default function ProductDetail() {
                   <button
                     key={index}
                     onClick={() => setSelectedImage(image)}
-                    className={`aspect-square rounded-md overflow-hidden border-2 ${
+                    className={`aspect-square rounded-md overflow-hidden border-2 relative ${
                       selectedImage === image ? 'border-primary' : 'border-transparent'
                     }`}
                   >
-                    <img
+                    <Image
                       src={image}
                       alt={`${product.name} - تصویر ${index + 1}`}
-                      className="h-full w-full object-cover"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 33vw, 16vw"
                     />
                   </button>
                 ))}
@@ -153,11 +158,15 @@ export default function ProductDetail() {
                 </TabsContent>
                 <TabsContent value="wholesaler" className="mt-4">
                   <div className="flex items-center gap-4">
-                    <img
-                      src={product.wholesaler.logo}
-                      alt={product.wholesaler.name}
-                      className="h-16 w-16 rounded-full object-cover"
-                    />
+                    <div className="relative h-16 w-16">
+                      <Image
+                        src={product.wholesaler.logo}
+                        alt={product.wholesaler.name}
+                        fill
+                        className="rounded-full object-cover"
+                        sizes="64px"
+                      />
+                    </div>
                     <div>
                       <h3 className="font-semibold">{product.wholesaler.name}</h3>
                       <p className="text-sm text-gray-500">{product.wholesaler.country}</p>
