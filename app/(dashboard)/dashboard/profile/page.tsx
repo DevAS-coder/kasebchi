@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react'
 import ProfileHeader from '@/components/profile/ProfileHeader'
 import ProfileImage from '@/components/profile/ProfileImage'
 import ProfileDetails from '@/components/profile/ProfileDetails'
-import AccountPreferences from '@/components/profile/AccountPreferences'
 
 export interface UserProfile {
   fullName: string;
@@ -34,7 +33,7 @@ function Profile() {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    // const { name, value } = e.target;
     // setEditedProfile({
     //   ...editedProfile,
     //   [name]: value

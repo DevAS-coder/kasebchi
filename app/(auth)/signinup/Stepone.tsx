@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useUsers } from '@/contexts/UserContext';
 import Spinner from '@/components/ui/spinner';
@@ -11,7 +11,7 @@ interface SteponeProps {
 
 function Stepone({ setSigninState }: SteponeProps) {
     const [phoneNumber, setPhoneNumber] = useState<string>('');
-    const { users, setUsers } = useUsers()
+    const { setUsers } = useUsers()
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter()
 

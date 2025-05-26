@@ -11,13 +11,13 @@ interface SteptwoProps {
     setSigninState: (state: number) => void;
 }
 
-interface UserState {
-    phoneNumber: string;
-    isExisted: boolean;
-    isAuthenticated: boolean;
-    user_id?: string;
-    role: string;
-}
+// interface UserState {
+//     phoneNumber: string;
+//     isExisted: boolean;
+//     isAuthenticated: boolean;
+//     user_id?: string;
+//     role: string;
+// }
 
 function Steptwo({ setSigninState }: SteptwoProps) {
     const [password, setpassword] = useState<string>('');

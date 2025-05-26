@@ -1,6 +1,4 @@
 "use client"
-
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -14,7 +12,6 @@ import {
   TrendingUp,
   Star, 
   Users,
-  ChevronLeft,
   Calendar,
   CheckCircle
 } from "lucide-react";
@@ -24,8 +21,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 const WholesalerDetail = () => {
 //   const { id } = useParams<{ id: string }>();
 //   const navigate = useNavigate();
-  let id = '1'
-  const { wholesaler, isLoading, error } = useWholesalers(id);
+  const id = '1'
+  const { wholesaler, isLoading } = useWholesalers(id);
 
 //   useEffect(() => {
 //     if (error) {

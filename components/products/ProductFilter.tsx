@@ -8,7 +8,12 @@ import { Separator } from "@/components/ui/separator";
 import { Filter, Search, X } from "lucide-react";
 
 interface ProductFilterProps {
-  onFilterChange?: (filters: any) => void;
+  onFilterChange?: (filters: {
+    search: string;
+    beanTypes: string[];
+    origins: string[];
+    roastTypes: string[];
+  }) => void;
   isMobile?: boolean;
   onClose?: () => void;
   initialFilters?: {
@@ -38,7 +43,7 @@ const ProductFilter = ({
     }
   }, [initialFilters]);
 
-  const handleFilterChange = (key: string, value: any) => {
+  const handleFilterChange = (key: string, value: string) => {
     setFilters(prev => {
       const newFilters = { ...prev, [key]: value };
       if (onFilterChange) {

@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button";
-import { Menu, X, User, DoorClosed, DoorClosedIcon, LucideDoorClosed, LogOutIcon } from "lucide-react";
+import { Menu, X, User, LogOutIcon } from "lucide-react";
 import ThemeToggle from "../layout/ThemeToggle";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -17,7 +17,6 @@ const navigation = [
 const DashNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {

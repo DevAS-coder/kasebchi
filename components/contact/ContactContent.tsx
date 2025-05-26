@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function ContactContent() {
-  const [isMapLoading, setIsMapLoading] = useState(true);
   const [formState, setFormState] = useState({
     fullname: "",
     email: "",

@@ -7,7 +7,6 @@ import ProductFilter from "@/components/products/ProductFilter";
 import ProductCard from "@/components/shared/ProductCard";
 import { Filter, Grid3X3, List, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import ProductCardSkeleton from "@/components/shared/ProductCardSkeleton";
 import { useDebounce } from "@/hooks/useDebounce";
 
 interface Product {
@@ -102,7 +101,12 @@ export default function ProductsContent({ initialProducts }: ProductsContentProp
     setMobileFilterOpen(!mobileFilterOpen);
   };
 
-  const handleFilterChange = (newFilters: any) => {
+  const handleFilterChange = (newFilters: {
+    search: string;
+    beanTypes: string[];
+    origins: string[];
+    roastTypes: string[];
+  }) => {
     setFilters(newFilters);
   };
 

@@ -36,20 +36,20 @@ function Signinup() {
   }, [router])
 
   // Helper function to set auth in localStorage (can be used elsewhere in the app)
-  const setAuth = (isAuth: boolean, userData = {}) => {
-    const authData = {
-      isAuthenticated: isAuth,
-      userData,
-      timestamp: new Date().getTime()
-    }
-    localStorage.setItem('auth', JSON.stringify(authData))
-    setIsAuthenticated(isAuth)
-  }
+  // const setAuth = (isAuth: boolean, userData = {}) => {
+  //   const authData = {
+  //     isAuthenticated: isAuth,
+  //     userData,
+  //     timestamp: new Date().getTime()
+  //   }
+  //   localStorage.setItem('auth', JSON.stringify(authData))
+  //   setIsAuthenticated(isAuth)
+  // }
 
-  const logout = () => {
-    localStorage.removeItem('auth')
-    setIsAuthenticated(false)
-  }
+  // const logout = () => {
+  //   localStorage.removeItem('auth')
+  //   setIsAuthenticated(false)
+  // }
 
   if (isLoading) {
     return (
