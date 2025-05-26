@@ -1,5 +1,6 @@
 'use client';
 
+import { Product } from "@/types/product";
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -8,18 +9,6 @@ import ProductCard from "@/components/shared/ProductCard";
 import { Filter, Grid3X3, List, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useDebounce } from "@/hooks/useDebounce";
-
-interface Product {
-  id: string;
-  name: string;
-  category: string;
-  beanType: string;
-  origin: string;
-  roastType: string;
-  price: string;
-  image: string;
-  description: string;
-}
 
 interface ProductsContentProps {
   initialProducts: Product[];
@@ -76,12 +65,6 @@ export default function ProductsContent({ initialProducts }: ProductsContentProp
       );
     }
     
-    if (filters.beanTypes.length > 0) {
-      result = result.filter(product => 
-        filters.beanTypes.includes(product.beanType)
-      );
-    }
-    
     if (filters.origins.length > 0) {
       result = result.filter(product => 
         filters.origins.includes(product.origin)
@@ -90,7 +73,7 @@ export default function ProductsContent({ initialProducts }: ProductsContentProp
     
     if (filters.roastTypes.length > 0) {
       result = result.filter(product => 
-        filters.roastTypes.includes(product.roastType)
+        filters.roastTypes.includes(product.roastLevel)
       );
     }
     
