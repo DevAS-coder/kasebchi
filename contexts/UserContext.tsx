@@ -28,7 +28,14 @@ export const useUsers = () => {
 
 
 export const UsersProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [users, setUsers] = React.useState<User>();
+  const [users, setUsers] = React.useState<User>({
+    user_id: '',
+    phoneNumber: '',
+    password: '',
+    role: '',
+    isAuthenticated: false,
+    isExisted: false
+  });
 
   return (
     <UsersContext.Provider value={{ users, setUsers }}>

@@ -1,12 +1,28 @@
-
 import { supabase } from '@/integrations/supabase/client';
+import { Product } from '@/types/product';
 
+interface ProductData extends Omit<Product, 'specifications'> {
+  specifications?: {
+    origin?: string;
+    roastLevel?: string;
+  };
+}
+
+interface WholesalerData {
+  id: string;
+  name: string;
+  logo: string;
+  country: string;
+}
+
+const productsData: ProductData[] = [];
+const wholesalersData: WholesalerData[] = [];
 
 export const migrateProductsToSupabase = async () => {
   try {
     // Convert product data to match the Supabase schema
     const formattedProducts = productsData.map(product => {
-      let galleryImages = [];
+      let galleryImages: string[] = [];
       
       // Create some sample gallery images (using the main image plus variations)
       if (product.image) {
