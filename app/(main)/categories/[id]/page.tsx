@@ -1,15 +1,10 @@
-// app/categories/[id]/page.tsx
+import CategoryClient from "@/components/shared/CategoryClient";
 
-type Props = {
-  params: {
-    id: string;
-  };
+
+type PageProps = {
+  params: { id: string };
 };
 
-export default function CategoryPage({ params }: Props) {
-  return (
-    <div className="p-8">
-      <h1 className="text-2xl font-bold">Category ID: {params.id}</h1>
-    </div>
-  );
+export default function Page({ params }: PageProps) {
+  return <CategoryClient id={params.id} />;
 }
