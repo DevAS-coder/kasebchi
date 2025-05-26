@@ -1,6 +1,6 @@
 "use client"
-import { useEffect, useState } from 'react'
-import Signinup from './Signinup/page'
+import { useLayoutEffect, useState } from 'react'
+import Signinup from '@/app/(auth)/signinup/page'
 import OverviewCard from '@/components/dashboard/OverviewCard'
 import { PackageCheck, ShoppingCart, Users2 } from 'lucide-react'
 import SalesChart from '@/components/dashboard/SalesChart'
@@ -12,7 +12,7 @@ function Dashboard() {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const router = useRouter()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.title = 'کاسب‌چی | داشبورد'
 
     const authData = localStorage.getItem('auth')
@@ -25,17 +25,17 @@ function Dashboard() {
           setIsAuthenticated(true)
         } else {
           setIsAuthenticated(false)
-          router.replace('/dashboard/Signinup')
+          router.replace('/signinup')
         }
       } catch (error) {
         console.error("Failed to parse auth data:", error)
         setIsAuthenticated(false)
         localStorage.removeItem('auth')
-        router.replace('/dashboard/Signinup')
+        router.replace('/signinup')
       }
     } else {
       setIsAuthenticated(false)
-      router.replace('/dashboard/Signinup')
+      router.replace('/signinup')
     }
 
     setIsLoading(false)

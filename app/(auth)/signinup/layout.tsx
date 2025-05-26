@@ -1,4 +1,3 @@
-import DashNavbar from '@/components/dashboard/DashNavbar';
 import React from 'react';
 
 interface LayoutProps {
@@ -7,12 +6,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <html>
-      <body>
-        <DashNavbar/>
-        {children}
-        </body>
-    </html>
+      <>{children}</>
   );
 };
 

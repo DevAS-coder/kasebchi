@@ -2,7 +2,7 @@
 import Navbar from '@/components/layout/Navbar'
 import { WholeSalerProvider } from '@/contexts/WholeSalerInfo'
 import React, { useEffect, useState } from 'react'
-import WholeSalerAdding from '../WholeSalerAdding'
+import WholeSalerAdding from '@/app/(dashboard)/dashboard/WholeSalerAdding'
 import { useRouter } from 'next/navigation'
 
 function Signinup() {

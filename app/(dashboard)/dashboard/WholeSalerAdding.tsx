@@ -1,8 +1,8 @@
 "use client"
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import Stepone from './Signinup/Stepone'
-import Steptwo from './Signinup/Steptwo'
+import Stepone from '@/app/(auth)/signinup/Stepone'
+import Steptwo from '@/app/(auth)/signinup/Steptwo'
 import { useUsers } from '@/contexts/UserContext'
 
 function WholeSalerAdding({ auth, setAuth }: any) {

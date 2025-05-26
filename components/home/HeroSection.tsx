@@ -16,7 +16,7 @@ const HeroSection = () => {
         transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url('./img/home/heroSection.jpg')`,
+          backgroundImage: `url('/img/home/heroSection.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

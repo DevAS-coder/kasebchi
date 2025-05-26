@@ -4,8 +4,6 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { UsersProvider } from "@/contexts/UserContext";
 import { WholeSalerProvider } from "@/contexts/WholeSalerInfo";
 import { CartProvider } from "@/contexts/CartContext";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 
@@ -28,9 +26,7 @@ export default function RootLayout({
               <CartProvider>
               <Toaster />
               <Sonner/>
-                <Navbar/>
                 {children}
-                <Footer/>
               </CartProvider>
             </WholeSalerProvider>
           </UsersProvider>
