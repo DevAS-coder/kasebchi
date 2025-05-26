@@ -4,12 +4,12 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Stepone from '@/app/(auth)/signinup/Stepone'
 import Steptwo from '@/app/(auth)/signinup/Steptwo'
 
-// interface WholeSalerAddingProps {
-//     auth: boolean;
-//     setAuth: (value: boolean) => void;
-// }
+interface WholeSalerAddingProps {
+    auth: boolean;
+    setAuth: (value: boolean) => void;
+}
 
-function WholeSalerAdding() {
+function WholeSalerAdding({ auth, setAuth }: WholeSalerAddingProps) {
     const [SigninState, setSigninState] = useState<number>(0)
 
     const variants = {
