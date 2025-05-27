@@ -4,16 +4,13 @@ import React from 'react';
 
 interface User {
   user_id: string,
-  phoneNumber: string;
-  password: string;
-  role: string;
-  isAuthenticated:boolean,
+  phoneNumber: string
   isExisted:boolean
 }
 
 interface UsersContextType {
-  users: User;
-  setUsers: React.Dispatch<React.SetStateAction<User>>;
+  user: User;
+  setUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
 const UsersContext = createContext<UsersContextType | undefined>(undefined);
@@ -28,17 +25,14 @@ export const useUsers = () => {
 
 
 export const UsersProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [users, setUsers] = React.useState<User>({
+  const [user, setUser] = React.useState<User>({
     user_id: '',
     phoneNumber: '',
-    password: '',
-    role: '',
-    isAuthenticated: false,
     isExisted: false
   });
 
   return (
-    <UsersContext.Provider value={{ users, setUsers }}>
+    <UsersContext.Provider value={{ user, setUser }}>
       {children}
     </UsersContext.Provider>
   );

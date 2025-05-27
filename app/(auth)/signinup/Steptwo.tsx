@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 import { ArrowLeftIcon } from 'lucide-react';
 import { useUsers } from '@/contexts/UserContext';
 import { useToast } from '@/hooks/use-toast';
@@ -11,17 +10,9 @@ interface SteptwoProps {
     setSigninState: (state: number) => void;
 }
 
-// interface UserState {
-//     phoneNumber: string;
-//     isExisted: boolean;
-//     isAuthenticated: boolean;
-//     user_id?: string;
-//     role: string;
-// }
-
 function Steptwo({ setSigninState }: SteptwoProps) {
     const [password, setpassword] = useState<string>('');
-    const { users, setUsers } = useUsers()
+    const { user } = useUsers()
     const toast = useToast();
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter()
@@ -29,77 +20,41 @@ function Steptwo({ setSigninState }: SteptwoProps) {
     const handleSubmit = (e: React.FormEvent) => {
         setIsLoading(true)
         e.preventDefault();
-        if (users.isExisted) {
-            authUser(users.phoneNumber, password);
-        } else {
-            checkPhoneExists(users.phoneNumber, password, 'wholesaler');
-        }
+        registerUser(user.phoneNumber, password, 'wholesaler');
     };
 
-    const checkPhoneExists = async (phone: string, password: string, role: string) => {
-        const { data, error } = await supabase.rpc('register_user', { p_phone: phone, p_password: password, p_role: role });
+    const registerUser = async (phone: string, password: string, role: string) => {
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            body: JSON.stringify({ phoneNumber: phone, password: password, role: 'wholesaler', isExisted: user.isExisted })
+        })
 
-        if (error) {
-            console.log(error);
+        const data = await response.json()
 
-        } else {
-
+        if (data.success) {
             toast.toast({
                 title: 'تبریک',
                 description: 'به کاسبچی خوش آمدید',
                 variant: 'default',
                 className: 'bg-green-500 text-white',
             });
-            users.isAuthenticated = true;
-            users.user_id = data.user_id;
-            users.role = 'wholesaler';
-            setUsers(users);
-            localStorage.setItem('auth', JSON.stringify({ users }));
-            
-            router.replace('/dashboard');
-            setIsLoading(false)
-
-        }
-        return data;
-    };
-    const authUser = async (phone: string, password: string) => {
-        const { data, error } = await supabase.rpc('authenticate_user', { p_phone: phone, p_password: password });
-
-        if (error) {
-            console.log(error);
-
+            router.push('/dashboard')
         } else {
-            if (data.success) {
-                toast.toast({
-                    title: 'تبریک',
-                    description: 'به کاسبچی خوش آمدید',
-                    variant: 'default',
-                    className: 'bg-green-500 text-white',
-                });
-                users.isAuthenticated = true;
-                users.role = 'wholesaler';
-                users.user_id = data.user_id;
-                setUsers(users);
-                localStorage.setItem('auth', JSON.stringify({ users }));
-                router.replace('/dashboard');
-            } else {
-                toast.toast({
-                    title: 'خطا',
-                    description: 'شماره تلفن یا رمز عبور اشتباه است',
-                    variant: 'destructive',
-                    className: 'bg-red-500 text-white',
-                });
-            }
+            
+            toast.toast({
+                title: 'متاسفیم',
+                description: 'رمز عبور اشتباه',
+                variant: 'default',
+                className: 'bg-green-500 text-white',
+            });
         }
-        setIsLoading(false)
-        return data;
     };
 
     return (
         <div className='flex flex-col justify-center items-center'>
             <Image src="/img/logo/logo.webp" width={100} height={100} alt="logo" />
             <ArrowLeftIcon className='absolute top-2 left-2 cursor-pointer' onClick={() => setSigninState(0)} />
-            {users.isExisted ? <h1 className="mt-6 font-extrabold text-md text-gray-800">خوش آمدید! رمز ورود خود را وارد کنید</h1>
+            {user.isExisted ? <h1 className="mt-6 font-extrabold text-md text-gray-800">خوش آمدید! رمز ورود خود را وارد کنید</h1>
                 :
                 <h1 className="mt-6 font-extrabold text-md text-gray-800">خوشحالیم که شما در حال عضو شدن به کاسبچی هستید</h1>
             }

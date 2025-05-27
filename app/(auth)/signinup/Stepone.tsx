@@ -1,59 +1,59 @@
 import React, { useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 import { useUsers } from '@/contexts/UserContext';
 import Spinner from '@/components/ui/spinner';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 interface SteponeProps {
-    setSigninState: (state: number) => void;
+  setSigninState: (state: number) => void;
 }
 
 function Stepone({ setSigninState }: SteponeProps) {
-    const [phoneNumber, setPhoneNumber] = useState<string>('');
-    const { setUsers } = useUsers()
-    const [isLoading, setIsLoading] = useState(false);
-    const router = useRouter()
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const { setUser } = useUsers()
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter()
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        setIsLoading(true);
-        if (phoneNumber.length === 11) {
-          checkPhoneExists(phoneNumber)
-        } else {
-          alert('شماره تلفن باید 11 رقم باشد.');
-        }
-    };
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (phoneNumber.length === 11) {
+      setIsLoading(true);
+      checkPhoneExists(phoneNumber)
+    } else {
+      alert('شماره تلفن باید 11 رقم باشد.');
+    }
+  };
 
-    const checkPhoneExists = async (phone: string) => {
-        const { data } = await supabase.rpc('check_phone_exists', { p_phone: phone });
-        if (data) {
-            setSigninState(1);
-            setUsers(prevUser => ({
-                ...prevUser,
-                phoneNumber,
-                isExisted: true,
-                password: '',
-                role: '',
-                isAuthenticated: false
-            }));
-            setIsLoading(false);
-            
-        } else {
-            setSigninState(1);
-            setUsers(prevUser => ({
-                ...prevUser,
-                phoneNumber,
-                isExisted: false,
-                password: '',
-                role: '',
-                isAuthenticated: false
-            }));
-            setIsLoading(false);
-            
-        }
-        return data;
-    };
+  const checkPhoneExists = async (phone: string) => {
+
+    const res = await fetch('/api/checkuser', {
+      method: 'POST',
+      body: JSON.stringify({ phoneNumber: phone })
+    })
+
+    const data = await res.json()
+    
+    if (data.message) {
+      setSigninState(1);
+      setUser(prevUser => ({
+        ...prevUser,
+        phoneNumber: phoneNumber,
+        isExisted: true,
+      }));
+      setIsLoading(false);
+
+    } else {
+      setSigninState(1);
+      setUser(prevUser => ({
+        ...prevUser,
+        phoneNumber: phoneNumber,
+        isExisted: false,
+      }));
+      setIsLoading(false);
+
+    }
+    return data;
+  };
   return (
     <div className='flex flex-col justify-center items-center'>
       <h1 className='absolute top-2 right-2 cursor-pointer' onClick={() => router.replace('/')}>بستن</h1>
@@ -74,7 +74,7 @@ function Stepone({ setSigninState }: SteponeProps) {
         onClick={handleSubmit}
       >
         {isLoading ? (
-          <Spinner/>
+          <Spinner />
         ) : (
           'ارسال'
         )}

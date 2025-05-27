@@ -12,46 +12,17 @@ function Dashboard() {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const router = useRouter()
 
-  useLayoutEffect(() => {
-    document.title = 'کاسب‌چی | داشبورد'
-
-    const authData = localStorage.getItem('auth')
-
-    if (authData) {
-      try {
-        const parsedAuth = JSON.parse(authData)
-
-        if (parsedAuth.users.isAuthenticated && parsedAuth.users.role === 'wholesaler') {
-          setIsAuthenticated(true)
-        } else {
-          setIsAuthenticated(false)
-          router.replace('/signinup')
-        }
-      } catch (error) {
-        console.error("Failed to parse auth data:", error)
-        setIsAuthenticated(false)
-        localStorage.removeItem('auth')
-        router.replace('/signinup')
-      }
-    } else {
-      setIsAuthenticated(false)
-      router.replace('/signinup')
-    }
-
-    setIsLoading(false)
-  }, [router])
-
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-pulse text-primary">در حال بارگذاری...</div>
-      </div>
-    )
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="flex justify-center items-center h-screen">
+  //       <div className="animate-pulse text-primary">در حال بارگذاری...</div>
+  //     </div>
+  //   )
+  // }
 
   return (
     <>
-      {isAuthenticated ? (
+      
           <div className="mt-16 p-6 grid gap-4 w-full">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <OverviewCard title="موجودی کل" value="۱۵۰ بسته" icon={<PackageCheck />} />
@@ -63,10 +34,6 @@ function Dashboard() {
             <RecentOrders />
           </div>
 
-      ) :
-        <Signinup />
-
-      }
     </>
   )
 }
