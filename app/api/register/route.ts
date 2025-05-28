@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/integrations/supabase/client";
-import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const JWT_SECRET = process.env.JWT_SECRET!;
@@ -13,7 +12,6 @@ export async function POST(req: NextRequest) {
   }
 
   if (isExisted) {
-    // const encryptedPassword = await bcrypt.hash(password, 10);
     
     const { data, error } = await supabase.rpc("authenticate_user", {
       p_phone: phoneNumber,
@@ -29,7 +27,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, message: "شماره یا رمز اشتباه است", detail: data }, { status: 401 });
     }
 
-    const token = jwt.sign({ id: data.user_id }, JWT_SECRET, {
+    const token = jwt.sign({ id: data.user_id, phone: phoneNumber }, JWT_SECRET, {
       expiresIn: "24h",
     });
 
@@ -46,8 +44,6 @@ export async function POST(req: NextRequest) {
     return response;
   }
 
-  const encryptedPassword = await bcrypt.hash(password, 10);
-
   const { data, error } = await supabase.rpc("register_user", {
     p_phone: phoneNumber,
     p_password: password,
@@ -63,7 +59,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, message: "ثبت‌نام انجام نشد", detail: data }, { status: 400 });
   }
 
-  const token = jwt.sign({ id: data.user_id }, JWT_SECRET, {
+  const token = jwt.sign({ id: data.user_id, phone: phoneNumber }, JWT_SECRET, {
     expiresIn: "24h",
   });
 

@@ -45,8 +45,9 @@ function Steptwo({ setSigninState }: SteptwoProps) {
                 title: 'متاسفیم',
                 description: 'رمز عبور اشتباه',
                 variant: 'default',
-                className: 'bg-green-500 text-white',
+                className: 'bg-red-500 text-white',
             });
+            setIsLoading(false)
         }
     };
 
