@@ -13,11 +13,11 @@ export async function POST(req: NextRequest) {
   }
 
   if (isExisted) {
-    const encryptedPassword = await bcrypt.hash(password, 10);
+    // const encryptedPassword = await bcrypt.hash(password, 10);
     
     const { data, error } = await supabase.rpc("authenticate_user", {
       p_phone: phoneNumber,
-      p_password: encryptedPassword, 
+      p_password: password, 
     });
 
     if (error) {
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
 
   const { data, error } = await supabase.rpc("register_user", {
     p_phone: phoneNumber,
-    p_password: encryptedPassword,
+    p_password: password,
     p_role: role,
   });
 

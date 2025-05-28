@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import WholeSalerAdding from '@/app/(dashboard)/dashboard/WholeSalerAdding'
 import { useRouter } from 'next/navigation'
 
-function Signinup() {
+function login() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const router = useRouter()
@@ -35,22 +35,6 @@ function Signinup() {
     setIsLoading(false)
   }, [router])
 
-  // Helper function to set auth in localStorage (can be used elsewhere in the app)
-  // const setAuth = (isAuth: boolean, userData = {}) => {
-  //   const authData = {
-  //     isAuthenticated: isAuth,
-  //     userData,
-  //     timestamp: new Date().getTime()
-  //   }
-  //   localStorage.setItem('auth', JSON.stringify(authData))
-  //   setIsAuthenticated(isAuth)
-  // }
-
-  // const logout = () => {
-  //   localStorage.removeItem('auth')
-  //   setIsAuthenticated(false)
-  // }
-
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -64,7 +48,7 @@ function Signinup() {
       {!isAuthenticated ? (
         <div className="flex justify-center items-center h-screen w-full ">
           <div>
-            <WholeSalerAdding auth={isAuthenticated} setAuth={setIsAuthenticated}/>
+            <WholeSalerAdding/>
           </div>
         </div>
       ) : null}
@@ -72,4 +56,4 @@ function Signinup() {
   )
 }
 
-export default Signinup
+export default login

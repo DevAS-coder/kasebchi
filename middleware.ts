@@ -6,23 +6,38 @@ const JWT_SECRET = process.env.JWT_SECRET!;
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
+  const url = request.nextUrl;
+
+  const isLoginPage = url.pathname === "/login";
 
   if (!token) {
-    console.log('Token not found');
-    return NextResponse.redirect(new URL("/signinup", request.url));
+    if (isLoginPage) {
+      return NextResponse.next();
+    }
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   try {
     const secret = new TextEncoder().encode(JWT_SECRET);
     await jwtVerify(token, secret);
-    console.log('Token is valid');
+
+    if (isLoginPage) {
+      return NextResponse.redirect(new URL("/dashboard", request.url));
+    }
+
     return NextResponse.next();
   } catch (err) {
     console.error('Token is invalid:', err);
-    return NextResponse.redirect(new URL("/signinup", request.url));
+
+    if (!isLoginPage) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+
+    return NextResponse.next();
   }
 }
 
+
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/dashboard/:path*", "/login"],
 };

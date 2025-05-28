@@ -1,15 +1,10 @@
 "use client"
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import Stepone from '@/app/(auth)/signinup/Stepone'
-import Steptwo from '@/app/(auth)/signinup/Steptwo'
+import Stepone from '@/app/(auth)/login/Stepone'
+import Steptwo from '@/app/(auth)/login/Steptwo'
 
-interface WholeSalerAddingProps {
-    auth: boolean;
-    setAuth: (value: boolean) => void;
-}
-
-function WholeSalerAdding({ auth, setAuth }: WholeSalerAddingProps) {
+function WholeSalerAdding() {
     const [SigninState, setSigninState] = useState<number>(0)
 
     const variants = {

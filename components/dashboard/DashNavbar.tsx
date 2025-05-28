@@ -30,8 +30,13 @@ const DashNavbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleLogOut = () => {
-    localStorage.removeItem('auth')
+  const handleLogOut = async () => {
+    const res = await fetch('/api/logout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
   }
 
   return (
