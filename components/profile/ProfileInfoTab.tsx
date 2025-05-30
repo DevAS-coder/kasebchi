@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import PartOdd from './PartOdd';
-import PartEven from './PartEven';
+'use client'
 
-type WholesalerData = [string, any][];
+import React from 'react'
+import useSWR from 'swr'
+import PartOdd from './PartOdd'
+import PartEven from './PartEven'
 
-const parts = {
+type WholesalerData = [string, any][]
+
+const parts: Record<string, string> = {
   first_name: "نام",
   last_name: "نام خانوادگی",
   mobile: "شماره موبایل",
@@ -12,43 +15,36 @@ const parts = {
   service_category: "دسته بندی سرویس",
 }
 
+const fetcher = async (url: string) => {
+  const res = await fetch(url)
+  if (!res.ok) throw new Error('Failed to fetch')
+  return res.json()
+}
+
 function ProfileInfoTab() {
-  const [wholesalerData, setWholesalerData] = useState<WholesalerData | null>(null);
+  const { data, error, isLoading } = useSWR('/api/getwholesalerdata', fetcher, {
+    dedupingInterval: 300000,
+  })
+  
 
-  useEffect(() => {
-    const fetchWholesalerData = async () => {
-      const response = await fetch("/api/getwholesalerdata", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      console.log(data.data);
+  if (isLoading) return <div className='flex justify-center items-center h-screen'>در حال بارگذاری...</div>
+  if (error) return <div className='text-red-500'>خطا در دریافت اطلاعات</div>
 
-      let wholesalerDataList = Object.entries(data.data);
-      wholesalerDataList = wholesalerDataList.filter(([key, value]) => key !== "id" && key !== "created_at" && key !== "user_id" && key !== "level_1_auth"  && key !== "level_2_auth");
-      
-      setWholesalerData(wholesalerDataList);
-    };
-    fetchWholesalerData();
-  }, [])
-
-  if (!wholesalerData) return <div className='flex justify-center items-center h-screen'>در حال بارگذاری...</div>;
+  let wholesalerDataList: WholesalerData = Object.entries(data.data)
+    .filter(([key]) => !["id", "created_at", "user_id", "level_1_auth", "level_2_auth"].includes(key))
 
   return (
     <div className='grid grid-cols-2'>
-      {wholesalerData.map(([key, value], index) => (
-        index % 2 === 0 ? (
-          <PartOdd title={parts[key as keyof typeof parts]} value={value} />
+      {wholesalerDataList.map(([key, value], index) => {
+        const title = parts[key] || key
+        return index % 2 === 0 ? (
+          <PartOdd key={index} title={title} value={value} />
         ) : (
-          <PartEven title={parts[key as keyof typeof parts]} value={value} />
+          <PartEven key={index} title={title} value={value} />
         )
-        ))
-        
-      }
+      })}
     </div>
   )
 }
 
-export default ProfileInfoTab;
+export default ProfileInfoTab
