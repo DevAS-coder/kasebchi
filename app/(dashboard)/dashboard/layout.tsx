@@ -1,6 +1,7 @@
 "use client"
 import DashNavbar from '@/components/dashboard/DashNavbar';
-import React, { useLayoutEffect, useState } from 'react';
+import { redirect } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,7 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
   const [wholesalerExisted, setwholesalerExisted] = useState(true);
   const [isFetched, setIsFetched] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const fetchUserData = async () => {
       const res = await fetch('/api/getuserdata', {
         method: 'POST',
@@ -23,7 +24,7 @@ const Layout = ({ children }: LayoutProps) => {
       const data = await res.json();
       return data;
     };
-    
+
     const handle = async () => {
       const userData = await fetchUserData();
       if (userData.payload.id) {
@@ -36,31 +37,34 @@ const Layout = ({ children }: LayoutProps) => {
         });
         const wholesalerData = await wholesalerRes.json();
         setWholesalerData(wholesalerData.data);
-        setwholesalerExisted(wholesalerData.success);
-      } else {
-        setwholesalerExisted(false);
-      }
-      setIsFetched(true); 
-    };
-    
-    handle();    
-    
-  },[])
 
-  if (!isFetched) return <div className='flex justify-center items-center h-screen text-black'>در حال اعتبارسنجی اطلاعات...</div>;
+        if (!wholesalerData.success) {
+          redirect('/wholesalerauthlvlone')
+        } else {
+          setIsFetched(true);
+        }
+      }
+      
+    };
+
+    handle();
+
+  }, [])
+
+  if (!isFetched) return (
+    <div className='flex justify-center items-center h-screen text-black'>
+      <p>در حال اعتبارسنجی اطلاعات...</p>
+    </div>
+  );
 
   return (
     <>
-      {wholesalerExisted ? (
-        <div>
-          <DashNavbar />
-          {children}
-        </div>
-      ) : (
-        <div>
-          {children}
-        </div>
-      )}
+
+      <div>
+        <DashNavbar />
+        {children}
+      </div>
+
     </>
   );
 };

@@ -1,12 +1,17 @@
+"use client"
 import React, { useState } from 'react'
 import { X } from "lucide-react"
+import { useToast } from '@/hooks/use-toast'
+import { useRouter } from 'next/navigation'
 
-function FormAuthLevelOne() {
+function FromAuthLevelOne() {
   // const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [firstName, setFirstName] = useState<string>("")
   const [Category, setCategory] = useState<string>("")
   const [lastName, setLastName] = useState<string>("")
   const [nationalId, setNationalId] = useState<string>("")
+  const toast = useToast()
+  const router = useRouter()
 
   const categories = [
     { value: 'coffee_beans', label: 'دان قهوه' },
@@ -39,7 +44,16 @@ function FormAuthLevelOne() {
       }
     })
     const data = await response.json()
-    console.log(data)
+    if (data.success) {
+      router.push("/dashboard")
+    } else {
+      toast.toast({
+        title:'خطا',
+        description: data.message,
+        variant: 'default',
+        className: 'bg-red-500 text-white'
+      })
+    }
   }
 
   return (
@@ -58,6 +72,7 @@ function FormAuthLevelOne() {
                 type="text" 
                 id="fname" 
                 name="fname" 
+                required
                 className='w-full px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors' 
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
@@ -73,6 +88,7 @@ function FormAuthLevelOne() {
                 type="text" 
                 id="lname" 
                 name="lname" 
+                required
                 className='w-full px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors' 
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
@@ -88,6 +104,7 @@ function FormAuthLevelOne() {
                 type="text" 
                 id="nationalId" 
                 name="nationalId" 
+                required
                 className='w-full px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors' 
                 dir="ltr"
                 value={nationalId}
@@ -103,6 +120,7 @@ function FormAuthLevelOne() {
                 type="text" 
                 id="Category" 
                 name="Category" 
+                required
                 className='w-full px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors' 
                 dir="ltr"
                 value={Category}
@@ -175,4 +193,4 @@ function FormAuthLevelOne() {
   )
 }
 
-export default FormAuthLevelOne
+export default FromAuthLevelOne

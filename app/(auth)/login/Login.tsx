@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Stepone from '@/app/(auth)/login/Stepone'
 import Steptwo from '@/app/(auth)/login/Steptwo'
 
-function WholeSalerAdding() {
+function Login() {
     const [SigninState, setSigninState] = useState<number>(0)
 
     const variants = {
@@ -62,4 +62,4 @@ function WholeSalerAdding() {
     )
 }
 
-export default WholeSalerAdding
+export default Login

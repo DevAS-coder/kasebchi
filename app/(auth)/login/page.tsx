@@ -1,8 +1,8 @@
 "use client"
 import { WholeSalerProvider } from '@/contexts/WholeSalerInfo'
 import React, { useEffect, useState } from 'react'
-import WholeSalerAdding from '@/app/(dashboard)/dashboard/WholeSalerAdding'
 import { useRouter } from 'next/navigation'
+import Login from '@/app/(auth)/login/Login'
 
 function login() {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
@@ -48,7 +48,7 @@ function login() {
       {!isAuthenticated ? (
         <div className="flex justify-center items-center h-screen w-full ">
           <div>
-            <WholeSalerAdding/>
+            <Login/>
           </div>
         </div>
       ) : null}
