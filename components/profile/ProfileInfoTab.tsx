@@ -13,6 +13,8 @@ const parts: Record<string, string> = {
   mobile: "شماره موبایل",
   national_code: "کد ملی",
   service_category: "دسته بندی سرویس",
+  level_1_auth : 'احراز هویت مرحله اول',
+  level_2_auth : 'احراز هویت مرحله دوم'
 }
 
 const fetcher = async (url: string) => {
@@ -31,7 +33,7 @@ function ProfileInfoTab() {
   if (error) return <div className='text-red-500'>خطا در دریافت اطلاعات</div>
 
   let wholesalerDataList: WholesalerData = Object.entries(data.data)
-    .filter(([key]) => !["id", "created_at", "user_id", "level_1_auth", "level_2_auth"].includes(key))
+    .filter(([key]) => !["id", "created_at", "user_id"].includes(key))
 
   return (
     <div className='grid grid-cols-2'>
