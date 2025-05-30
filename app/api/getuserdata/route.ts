@@ -10,7 +10,6 @@ export async function POST(request: NextRequest) {
     }
     const secret = new TextEncoder().encode(JWT_SECRET);
     const { payload } = await jwtVerify(token, secret)
-    console.log(payload);
     
     const response = NextResponse.json({payload: payload})
 

@@ -98,7 +98,7 @@ const DashNavbar = () => {
           {/* Right side actions */}
           <div className="flex items-center md:space-x-4 space-x-reverse">
             <ThemeToggle />
-            <Link href="/dashboard/profile">
+            <Link href="/dashboard/profile?tabName=personal_information">
               <Button variant="ghost" className=" dark:text-gray-300 dark:hover:text-primary">
                 <User className="h-5 w-5" />
               </Button>

@@ -10,7 +10,6 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
 
   const [wholesalerData, setWholesalerData] = useState(null);
-  const [wholesalerExisted, setwholesalerExisted] = useState(true);
   const [isFetched, setIsFetched] = useState(false);
 
   useEffect(() => {
