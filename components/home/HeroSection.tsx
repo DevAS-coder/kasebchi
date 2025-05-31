@@ -32,8 +32,8 @@ const HeroSection = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           src="./img/logo/logo.webp"
-          width={120}
-          height={120}
+          width={230}
+          height={230}
           alt="Logo"
           className="-mt-20 mb-10 drop-shadow-2xl"
           loading="eager"

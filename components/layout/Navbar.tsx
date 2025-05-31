@@ -78,8 +78,8 @@ const Navbar = () => {
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <div className="flex flex-row justify-center items-center text-2xl font-bold text-primary dark:text-white">
-                <img className="mr-3 md:mr-0" src="./img/logo/logo.webp" width={40} alt="کاسب‌چی" />
-                <h1 className="text-primary mr-3 dark:text-white">کاسب‌چی</h1>
+                <img className="mr-3 md:mr-0" src="./img/logo/logo.webp" width={100} alt="کاسب‌چی" />
+            
               </div>
             </Link>
 
