@@ -5,9 +5,9 @@ import { useToast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
 
 function FromAuthLevelOne() {
-  // const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [firstName, setFirstName] = useState<string>("")
-  const [Category, setCategory] = useState<string>("")
+  // const [Category, setCategory] = useState<string>("")
   const [lastName, setLastName] = useState<string>("")
   const [nationalId, setNationalId] = useState<string>("")
   const toast = useToast()
@@ -15,35 +15,39 @@ function FromAuthLevelOne() {
 
   const categories = [
     { value: 'coffee_beans', label: 'دان قهوه' },
-    { value: 'equipment', label: 'تجهیزات' },
+    { value: 'industrial_equipment', label: 'تجهیزات' },
     { value: 'cafe_vessels', label: 'ظروف کافه' },
-    { value: 'cake_design', label: 'کیک و دسر' },
-    { value: 'decor_design', label: 'طراحی دگور' },
-    { value: 'menu_design', label: 'طراحی منوی' },
-    { value: 'setup', label: 'راه اندازی' },
-    { value: 'sales', label: 'کارشناس فروش' },
-    { value: 'hr', label: 'منابع انسانی' },
-    { value: 'equipment_maintenance', label: 'نگهداری تجهیزات' },
+    { value: 'cakes_and_desserts', label: 'کیک و دسر' },
+    { value: 'decor_designers', label: 'طراحی دگور' },
+    { value: 'menu_designers', label: 'طراحی منوی' },
+    { value: 'cafe_setup_services', label: 'راه اندازی' },
+    { value: 'sales_experts', label: 'کارشناس فروش' },
+    { value: 'human_resources', label: 'منابع انسانی' },
+    { value: 'support', label: 'پشتیبانی' },
+    { value: 'disposable_supplies', label: 'مصالح یکبار مصرف' },
+    { value: 'repairs', label: 'تعمیرات' },
   ]
 
-  // const toggleCategory = (value: string) => {
-  //   setSelectedCategories(prev => 
-  //     prev.includes(value) 
-  //       ? prev.filter(cat => cat !== value)
-  //       : [...prev, value]
-  //   )
-  // }
+  const toggleCategory = (value: string) => {
+    setSelectedCategories(prev => 
+      prev.includes(value) 
+        ? prev.filter(cat => cat !== value)
+        : [...prev, value]
+    )
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const response = await fetch("/api/sendwholesalerdata", {
       method: "POST",
-      body: JSON.stringify({ firstName, lastName, nationalId, Category }),
+      body: JSON.stringify({ firstName, lastName, nationalId, selectedCategories }),
       headers: {
         "Content-Type": "application/json"
       }
     })
     const data = await response.json()
+    console.log('this is data', data);
+    
     if (data.success) {
       router.push("/dashboard")
     } else {
@@ -112,7 +116,7 @@ function FromAuthLevelOne() {
               />
             </div>
 
-            <div className='form-group'>
+            {/* <div className='form-group'>
               <label htmlFor="Category" className='block text-sm font-medium text-slate-700 mb-2'>
                 دسته بندی :
               </label>
@@ -126,10 +130,10 @@ function FromAuthLevelOne() {
                 value={Category}
                 onChange={(e) => setCategory(e.target.value)}
               />
-            </div>
+            </div> */}
 
             {/* Categories */}
-            {/* <div className='form-group'>
+            <div className='form-group'>
               <label className='block text-sm font-medium text-slate-700 mb-2'>
                 دسته بندی :
               </label>
@@ -175,7 +179,7 @@ function FromAuthLevelOne() {
                   </div>
                 </div>
               </div>
-            </div> */}
+            </div>
           </div>
 
           {/* Submit Button */}

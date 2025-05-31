@@ -26,11 +26,13 @@ export async function POST(request: NextRequest) {
     p_last_name: lastName,
     p_national_code: nationalId,
     p_mobile: payload.phone,
-    p_service_categories: ['coffee_beans','industrial_equipment'],
+    p_service_categories: Category,
     p_level_1_auth: 1,
   });
 
   if (error) {
+    console.log('this is error', error);
+    
     return NextResponse.json({ success: false, message: "خطای سرور", error: error.message }, { status: 500 });
   }
 
