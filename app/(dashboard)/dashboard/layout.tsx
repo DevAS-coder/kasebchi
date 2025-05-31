@@ -27,7 +27,7 @@ const Layout = ({ children }: LayoutProps) => {
 
     const handle = async () => {
       const userData = await fetchUserData();
-      if(!userData.payload.id) {
+      if(userData.error) {
         redirect('/login')
       }
       if (userData.payload.id) {

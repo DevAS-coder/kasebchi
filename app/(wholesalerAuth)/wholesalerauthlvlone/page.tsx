@@ -24,7 +24,7 @@ function FromAuthLevelOne() {
     { value: 'sales_experts', label: 'کارشناس فروش' },
     { value: 'human_resources', label: 'منابع انسانی' },
     { value: 'support', label: 'پشتیبانی' },
-    { value: 'disposable_supplies', label: 'مصالح یکبار مصرف' },
+    { value: 'disposable', label: 'مصالح یکبار مصرف' },
     { value: 'repairs', label: 'تعمیرات' },
   ]
 
