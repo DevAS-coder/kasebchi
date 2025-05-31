@@ -38,9 +38,12 @@ function Steptwo({ setSigninState }: SteptwoProps) {
                 variant: 'default',
                 className: 'bg-green-500 text-white',
             });
-            router.push('/dashboard')
+            setTimeout(() => {
+                window.location.href = '/dashboard';
+            }, 300);
+
         } else {
-            
+
             toast.toast({
                 title: 'متاسفیم',
                 description: 'رمز عبور اشتباه',
