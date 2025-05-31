@@ -11,6 +11,10 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ success: false, message: "خطای سرور", error: error.message }, { status: 500 });
     }
 
+    if (!data.exists) {
+        return NextResponse.json({ success: false, message: "عمده فروش ثبت نشده است" });
+    }
+
     if (data.data.exists) {
         return NextResponse.json({ success: true, message: "عمده فروش ثبت شده است", data: data }, { status: 200 });
     } else {
