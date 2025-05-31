@@ -34,6 +34,8 @@ function FromAuthLevelOne() {
         ? prev.filter(cat => cat !== value)
         : [...prev, value]
     )
+    console.log(selectedCategories);
+    
   }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

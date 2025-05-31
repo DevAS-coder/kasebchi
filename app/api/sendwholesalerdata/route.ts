@@ -5,15 +5,22 @@ import { supabase } from "@/integrations/supabase/client";
 const JWT_SECRET = process.env.JWT_SECRET!;
 
 export async function POST(request: NextRequest) {
-  const { firstName, lastName, nationalId, Category } = await request.json();
+  const { firstName, lastName, nationalId, selectedCategories } = await request.json();
 
-  if (!firstName || !lastName || !nationalId || !Category) {
+  if (!firstName || !lastName || !nationalId || !selectedCategories) {
+    console.log('this is error', '111111');
+    console.log('this is firstName', firstName);
+    console.log('this is lastName', lastName);
+    console.log('this is nationalId', nationalId);
+    console.log('this is Category', selectedCategories);
+    
     return NextResponse.json({ success: false, message: "خطای سرور", error: "Invalid token" }, { status: 500 });
   }
 
   const token = request.cookies.get("token")?.value;
 
   if (!token) {
+    console.log('this is error', '222222');
     return NextResponse.json({ success: false, message: "خطای سرور", error: "Invalid token" }, { status: 500 });
   }
 
@@ -26,12 +33,11 @@ export async function POST(request: NextRequest) {
     p_last_name: lastName,
     p_national_code: nationalId,
     p_mobile: payload.phone,
-    p_service_categories: Category,
+    p_service_categories: selectedCategories,
     p_level_1_auth: 1,
   });
 
   if (error) {
-    console.log('this is error', error);
     
     return NextResponse.json({ success: false, message: "خطای سرور", error: error.message }, { status: 500 });
   }
@@ -40,6 +46,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, message: "اطلاعات ثبت شد", data: data }, { status: 200 });
   }
 
-  console.log(firstName, lastName, nationalId, Category);
+  console.log(firstName, lastName, nationalId, selectedCategories);
   return NextResponse.json({ message: "Data received" });
 }
