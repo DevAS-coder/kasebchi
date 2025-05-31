@@ -26,7 +26,8 @@ export async function POST(request: NextRequest) {
     p_last_name: lastName,
     p_national_code: nationalId,
     p_mobile: payload.phone,
-    p_service_category: Category,
+    p_service_categories: ['coffee_beans','industrial_equipment'],
+    p_level_1_auth: 1,
   });
 
   if (error) {
@@ -34,7 +35,6 @@ export async function POST(request: NextRequest) {
   }
 
   if (data) {
-    console.log(data);
     return NextResponse.json({ success: true, message: "اطلاعات ثبت شد", data: data }, { status: 200 });
   }
 

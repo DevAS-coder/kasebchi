@@ -21,6 +21,7 @@ const Layout = ({ children }: LayoutProps) => {
         }
       });
       const data = await res.json();
+      console.log('this is data', data);
       return data;
     };
 
@@ -35,6 +36,7 @@ const Layout = ({ children }: LayoutProps) => {
           body: JSON.stringify({ wholesalerId: userData.payload.id })
         });
         const wholesalerData = await wholesalerRes.json();
+        
         setWholesalerData(wholesalerData.data);
 
         if (!wholesalerData.success) {
