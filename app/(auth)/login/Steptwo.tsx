@@ -3,7 +3,7 @@ import { ArrowLeftIcon } from 'lucide-react';
 import { useUsers } from '@/contexts/UserContext';
 import { useToast } from '@/hooks/use-toast';
 import Spinner from '@/components/ui/spinner';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 interface SteptwoProps {
@@ -32,13 +32,16 @@ function Steptwo({ setSigninState }: SteptwoProps) {
         const data = await response.json()
 
         if (data.success) {
-            toast.toast({
-                title: 'تبریک',
-                description: 'به کاسبچی خوش آمدید',
-                variant: 'default',
-                className: 'bg-green-500 text-white',
-            });
-            redirect('/dashboard')
+            setTimeout(() => {
+                toast.toast({
+                    title: 'تبریک',
+                    description: 'به کاسبچی خوش آمدید',
+                    variant: 'default',
+                    className: 'bg-green-500 text-white',
+                });
+                console.log('pushing to dashboard');
+                router.push('/dashboard')
+            }, 1000);
 
         } else {
 
