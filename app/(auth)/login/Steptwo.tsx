@@ -3,7 +3,7 @@ import { ArrowLeftIcon } from 'lucide-react';
 import { useUsers } from '@/contexts/UserContext';
 import { useToast } from '@/hooks/use-toast';
 import Spinner from '@/components/ui/spinner';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 interface SteptwoProps {
@@ -38,9 +38,7 @@ function Steptwo({ setSigninState }: SteptwoProps) {
                 variant: 'default',
                 className: 'bg-green-500 text-white',
             });
-            setTimeout(() => {
-                window.location.href = '/dashboard';
-            }, 300);
+            redirect('/dashboard')
 
         } else {
 
