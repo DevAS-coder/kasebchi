@@ -34,7 +34,6 @@ function FromAuthLevelOne() {
         ? prev.filter(cat => cat !== value)
         : [...prev, value]
     )
-    console.log(selectedCategories);
     
   }
 
@@ -48,7 +47,6 @@ function FromAuthLevelOne() {
       }
     })
     const data = await response.json()
-    console.log('this is data', data);
     
     if (data.success) {
       router.push("/dashboard")
