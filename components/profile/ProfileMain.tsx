@@ -11,7 +11,7 @@ function ProfileMain() {
     const tabName = params.get('tabName')
 
     return (
-        <div className='w-full m-5'>
+        <div className='w-full px-3 py-4 md:m-5 overflow-y-auto'>
             {tabName === 'personal_information' && <ProfileInfoTab/>}
             {tabName === 'account_information' && <ProfileBussinesTab/>}
             {tabName === 'financial_information' && <ProfileFinancialTab/>}

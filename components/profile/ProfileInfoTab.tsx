@@ -28,7 +28,6 @@ function ProfileInfoTab() {
     dedupingInterval: 60000,
   })
   
-
   if (isLoading) return <div className='flex justify-center items-center h-screen'>در حال بارگذاری...</div>
   if (error) return <div className='text-red-500'>خطا در دریافت اطلاعات</div>
 
@@ -36,7 +35,7 @@ function ProfileInfoTab() {
     .filter(([key]) => !["id", "created_at", "user_id"].includes(key))
 
   return (
-    <div className='grid grid-cols-2'>
+    <div className='grid grid-cols-1 md:grid-cols-2'>
       {wholesalerDataList.map(([key, value], index) => {
         const title = parts[key] || key
         return index % 2 === 0 ? (

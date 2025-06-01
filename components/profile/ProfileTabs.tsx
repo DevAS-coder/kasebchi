@@ -27,7 +27,7 @@ const tabs = [
 
 function ProfileTabs() {
   return (
-    <div className='flex flex-col right-0 bg-gray-100 w-80 h-full'>
+    <div className='flex flex-row md:flex-col right-0 bg-gray-100 md:w-80 w-full overflow-x-auto md:overflow-x-hidden'>
         {tabs.map((tab, index) => (
             <TabsItem tabInfo={tab} key={index}/>
         ))}
