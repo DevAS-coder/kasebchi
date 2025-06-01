@@ -7,7 +7,7 @@ export default function PartEven({ title, value }: { title: string, value: any }
     displayValue = value ? "انجام شده" : "انجام نشده";
   } else if (Array.isArray(value)) {
     displayValue = value
-      .map((item) => translations[item] || item)
+      .map((item) => translations[item as keyof typeof translations] || item)
       .join("، ");
   } else {
     displayValue = value;
