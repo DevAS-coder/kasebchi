@@ -24,7 +24,7 @@ function FromAuthLevelOne() {
     { value: 'sales_experts', label: 'کارشناس فروش' },
     { value: 'human_resources', label: 'منابع انسانی' },
     { value: 'support', label: 'پشتیبانی' },
-    { value: 'disposable_supplies', label: 'مصالح یکبار مصرف' },
+    { value: 'disposable', label: 'مصالح یکبار مصرف' },
     { value: 'repairs', label: 'تعمیرات' },
   ]
 
@@ -34,7 +34,6 @@ function FromAuthLevelOne() {
         ? prev.filter(cat => cat !== value)
         : [...prev, value]
     )
-    console.log(selectedCategories);
     
   }
 
@@ -48,7 +47,6 @@ function FromAuthLevelOne() {
       }
     })
     const data = await response.json()
-    console.log('this is data', data);
     
     if (data.success) {
       router.push("/dashboard")

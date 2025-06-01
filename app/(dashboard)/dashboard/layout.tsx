@@ -21,12 +21,15 @@ const Layout = ({ children }: LayoutProps) => {
         }
       });
       const data = await res.json();
-      console.log('this is data', data);
+      
       return data;
     };
 
     const handle = async () => {
       const userData = await fetchUserData();
+      if(userData.error) {
+        redirect('/login')
+      }
       if (userData.payload.id) {
         const wholesalerRes = await fetch('/api/checkwholesaler', {
           method: 'POST',

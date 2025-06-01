@@ -32,15 +32,19 @@ function Steptwo({ setSigninState }: SteptwoProps) {
         const data = await response.json()
 
         if (data.success) {
-            toast.toast({
-                title: 'تبریک',
-                description: 'به کاسبچی خوش آمدید',
-                variant: 'default',
-                className: 'bg-green-500 text-white',
-            });
-            router.push('/dashboard')
+            setTimeout(() => {
+                toast.toast({
+                    title: 'تبریک',
+                    description: 'به کاسبچی خوش آمدید',
+                    variant: 'default',
+                    className: 'bg-green-500 text-white',
+                });
+                console.log('pushing to dashboard');
+                router.push('/dashboard')
+            }, 1000);
+
         } else {
-            
+
             toast.toast({
                 title: 'متاسفیم',
                 description: 'رمز عبور اشتباه',
