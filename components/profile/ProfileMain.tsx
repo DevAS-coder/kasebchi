@@ -6,16 +6,17 @@ import ProfileFinancialTab from './ProfileFinancialTab'
 import ProfileDocumentInfo from './ProfileDocumentInfo'
 
 function ProfileMain() {
-
     const params = useSearchParams()
-    const tabName = params.get('tabName')
+    const tabName = params.get('tabName') || 'personal_information'
 
     return (
-        <div className='w-full px-3 py-4 md:m-5 overflow-y-auto'>
-            {tabName === 'personal_information' && <ProfileInfoTab/>}
-            {tabName === 'account_information' && <ProfileBussinesTab/>}
-            {tabName === 'financial_information' && <ProfileFinancialTab/>}
-            {tabName === 'documents' && <ProfileDocumentInfo/>}
+        <div className='w-full h-full p-4 md:p-6'>
+            <div className="max-w-5xl mx-auto">
+                {tabName === 'personal_information' && <ProfileInfoTab/>}
+                {tabName === 'account_information' && <ProfileBussinesTab/>}
+                {tabName === 'financial_information' && <ProfileFinancialTab/>}
+                {tabName === 'documents' && <ProfileDocumentInfo/>}
+            </div>
         </div>
     )
 }

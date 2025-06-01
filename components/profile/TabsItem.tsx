@@ -9,15 +9,24 @@ type Props = {
 }
 
 function TabsItem({ tabInfo }: { tabInfo: Props }) {
-
     const searchParams = useSearchParams()
     const tabParam = searchParams.get('tabName')
+    const isActive = tabParam === tabInfo.segment
 
     return (
         <Link href={`/dashboard/profile?tabName=${tabInfo.segment}`} className="md:w-full w-auto">
-            <div className={`text-white px-3 md:px-4 py-3 md:py-4 border-b-2 md:border-b-2 cursor-pointer duration-300 border-black rounded-lg flex items-center gap-2 whitespace-nowrap md:whitespace-normal min-w-[150px] md:min-w-0 ${tabParam === tabInfo.segment ? 'bg-coffee-dark-bg/90' : 'bg-coffee-dark-bg/50 hover:bg-coffee-dark-bg/70'}`}>
+            <div className={`
+                flex items-center gap-3 px-4 py-3 rounded-xl
+                whitespace-nowrap md:whitespace-normal 
+                min-w-[140px] md:min-w-0
+                transition-all duration-200 ease-in-out
+                ${isActive 
+                    ? 'bg-coffee-dark-bg text-white shadow-md' 
+                    : 'bg-white hover:bg-gray-100 text-gray-700'
+                }
+            `}>
                 {tabInfo.icon}
-                <p className="text-sm md:text-base">{tabInfo.name}</p>
+                <p className="text-sm font-medium">{tabInfo.name}</p>
             </div>
         </Link>
     )

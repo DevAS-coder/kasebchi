@@ -28,14 +28,23 @@ function ProfileInfoTab() {
     dedupingInterval: 60000,
   })
   
-  if (isLoading) return <div className='flex justify-center items-center h-screen'>در حال بارگذاری...</div>
-  if (error) return <div className='text-red-500'>خطا در دریافت اطلاعات</div>
+  if (isLoading) return (
+    <div className='flex justify-center items-center min-h-[200px]'>
+      <div className="animate-pulse text-gray-400">در حال بارگذاری...</div>
+    </div>
+  )
+  
+  if (error) return (
+    <div className='flex justify-center items-center min-h-[200px]'>
+      <div className='text-red-500 bg-red-50 px-4 py-2 rounded-lg'>خطا در دریافت اطلاعات</div>
+    </div>
+  )
 
   let wholesalerDataList: WholesalerData = Object.entries(data.data)
     .filter(([key]) => !["id", "created_at", "user_id"].includes(key))
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 rounded-xl p-4'>
       {wholesalerDataList.map(([key, value], index) => {
         const title = parts[key] || key
         return index % 2 === 0 ? (
