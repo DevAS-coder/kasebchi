@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { UsersProvider } from "@/contexts/UserContext";
-import { WholeSalerProvider } from "@/contexts/WholeSalerInfo";
 import { CartProvider } from "@/contexts/CartContext";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -22,13 +21,11 @@ export default function RootLayout({
       <body>
         <ThemeProvider>
           <UsersProvider>
-            <WholeSalerProvider>
               <CartProvider>
               <Toaster />
               <Sonner/>
                 {children}
               </CartProvider>
-            </WholeSalerProvider>
           </UsersProvider>
         </ThemeProvider>
       </body>

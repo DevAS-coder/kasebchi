@@ -25,7 +25,7 @@ const fetcher = async (url: string) => {
 
 function ProfileInfoTab() {
   const { data, error, isLoading } = useSWR('/api/getwholesalerdata', fetcher, {
-    dedupingInterval: 300000,
+    dedupingInterval: 60000,
   })
   
 

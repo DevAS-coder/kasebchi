@@ -38,11 +38,14 @@ export async function POST(request: NextRequest) {
   });
 
   if (error) {
+    console.log(error);
     
     return NextResponse.json({ success: false, message: "خطای سرور", error: error.message }, { status: 500 });
   }
 
   if (data) {
+    console.log(data);
+    
     return NextResponse.json({ success: true, message: "اطلاعات ثبت شد", data: data }, { status: 200 });
   }
 

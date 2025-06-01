@@ -5,6 +5,7 @@ import { Menu, X, User, LogOutIcon } from "lucide-react";
 import ThemeToggle from "../layout/ThemeToggle";
 import Link from "next/link";
 import Image from "next/image";
+import { mutate } from "swr";
 
 const navigation = [
   { name: "محصولات", href: "/dashboard/products" },
@@ -37,6 +38,7 @@ const DashNavbar = () => {
         'Content-Type': 'application/json'
       }
     });
+    mutate('/api/getwholesalerdata')
   }
 
   return (
