@@ -9,29 +9,30 @@ function Login() {
 
     const variants = {
         initial: (direction: number) => ({
-            x: direction > 0 ? 300 : -300,
+            transform: `translate3d(${direction > 0 ? 300 : -300}px, 0, 0) scale(0.9)`,
             opacity: 0,
-            scale: 0.9,
             position: 'absolute' as const,
+            willChange: 'transform, opacity',
         }),
         animate: {
-            x: 0,
+            transform: 'translate3d(0, 0, 0) scale(1)',
             opacity: 1,
-            scale: 1,
             position: 'relative' as const,
             transition: { 
-                duration: 0.5,
+                duration: 0.3,
                 type: "spring",
-                stiffness: 100,
-                damping: 15
+                stiffness: 150,
+                damping: 20,
+                mass: 0.8
             },
+            willChange: 'transform, opacity',
         },
         exit: (direction: number) => ({
-            x: direction < 0 ? 300 : -300,
+            transform: `translate3d(${direction < 0 ? 300 : -300}px, 0, 0) scale(0.9)`,
             opacity: 0,
-            scale: 0.9,
             position: 'absolute' as const,
-            transition: { duration: 0.4 },
+            transition: { duration: 0.25 },
+            willChange: 'transform, opacity',
         }),
     }
 

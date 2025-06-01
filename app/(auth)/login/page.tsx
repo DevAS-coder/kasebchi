@@ -14,21 +14,21 @@ function login() {
 
   return (
 
-        <div className="min-h-screen w-full bg-gradient-to-br from-[#4A2C2A] via-[#2E1810] to-[#1A0F0A] relative overflow-hidden">
-          {/* Coffee beans floating animation */}
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#4A2C2A] via-[#2E1810] to-[#1A0F0A] relative overflow-hidden">
+      {/* Coffee beans floating animation */}
 
-          
-          {/* Overlay with slight blur */}
-          <div className="absolute inset-0 backdrop-blur-sm bg-black/10"></div>
-          
-          {/* Content */}
-          <div className="relative flex justify-center items-center min-h-screen w-full p-4">
-            <div className="relative z-10">
-              <Login/>
-            </div>
-          </div>
+
+      {/* Overlay with slight blur */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-black/10"></div>
+
+      {/* Content */}
+      <div className="relative flex justify-center items-center min-h-screen w-full p-4">
+        <div className="relative z-10">
+          <Login />
         </div>
-      
+      </div>
+    </div>
+
   )
 }
 
