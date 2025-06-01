@@ -12,7 +12,7 @@ const parts: Record<string, string> = {
   last_name: "نام خانوادگی",
   mobile: "شماره موبایل",
   national_code: "کد ملی",
-  service_category: "دسته بندی سرویس",
+  service_categories: "دسته بندی سرویس",
   level_1_auth : 'احراز هویت مرحله اول',
   level_2_auth : 'احراز هویت مرحله دوم'
 }
