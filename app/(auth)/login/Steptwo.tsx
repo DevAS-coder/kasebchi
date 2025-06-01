@@ -40,8 +40,9 @@ function Steptwo({ setSigninState }: SteptwoProps) {
                     className: 'bg-green-500 text-white',
                 });
                 console.log('pushing to dashboard');
-                router.push('/dashboard')
-            }, 1000);
+                let routern = router.push('/dashboard')
+                console.log(routern)
+            }, 10000);
 
         } else {
 
