@@ -32,15 +32,16 @@ function Steptwo({ setSigninState }: SteptwoProps) {
         const data = await response.json()
 
         if (data.success) {
+            toast.toast({
+                title: 'تبریک',
+                description: 'به کاسبچی خوش آمدید',
+                variant: 'default',
+                className: 'bg-green-500 text-white',
+            });
+
             setTimeout(() => {
-                toast.toast({
-                    title: 'تبریک',
-                    description: 'به کاسبچی خوش آمدید',
-                    variant: 'default',
-                    className: 'bg-green-500 text-white',
-                });
-                console.log('pushing to dashboard');
-                router.push('/dashboard')
+                router.push('/dashboard');
+                router.refresh();
             }, 1000);
 
         } else {
@@ -59,9 +60,9 @@ function Steptwo({ setSigninState }: SteptwoProps) {
         <div className='flex flex-col justify-center items-center'>
             <Image src="/img/logo/logo.webp" width={100} height={100} alt="logo" className="drop-shadow-lg" />
             <ArrowLeftIcon className='absolute top-2 left-2 cursor-pointer text-white/80 hover:text-white transition-colors duration-300' onClick={() => setSigninState(0)} />
-            {user.isExisted ? 
+            {user.isExisted ?
                 <h1 className="mt-6 font-extrabold text-2xl text-white">خوش آمدید!</h1>
-            :
+                :
                 <h1 className="mt-6 font-extrabold text-2xl text-white">به کاسبچی خوش آمدید</h1>
             }
             <p className="mt-3 text-white/90 text-center">لطفا رمز خود را وارد کنید.</p>
