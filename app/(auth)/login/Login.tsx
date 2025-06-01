@@ -37,21 +37,6 @@ function Login() {
 
     return (
         <div className="relative">
-            {/* Decorative coffee cup steam */}
-            <div className="absolute -top-8 left-1/2 -translate-x-1/2">
-                <motion.div
-                    animate={{
-                        y: [-4, 0, -4],
-                        opacity: [0.4, 0.8, 0.4],
-                    }}
-                    transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                    className="w-8 h-8 rounded-full bg-white/20 blur-md"
-                />
-            </div>
 
             <div className="max-w-md w-full md:w-[550px] mx-auto p-8 bg-gradient-to-b from-[#2C1810]/90 to-[#4A2C2A]/90 backdrop-blur-md shadow-[0_8px_32px_rgba(0,0,0,0.3)] rounded-3xl flex flex-col items-center justify-center relative overflow-hidden border border-white/10">
                 {/* Background coffee bean pattern */}

@@ -16,9 +16,7 @@ function login() {
 
         <div className="min-h-screen w-full bg-gradient-to-br from-[#4A2C2A] via-[#2E1810] to-[#1A0F0A] relative overflow-hidden">
           {/* Coffee beans floating animation */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="coffee-beans"></div>
-          </div>
+
           
           {/* Overlay with slight blur */}
           <div className="absolute inset-0 backdrop-blur-sm bg-black/10"></div>
