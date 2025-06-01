@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -233,4 +232,62 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* Coffee-themed animations and patterns */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(5deg); }
+  75% { transform: translateY(10px) rotate(-5deg); }
+}
+
+.coffee-beans::before,
+.coffee-beans::after {
+  content: '☕';
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.1;
+  animation: float 6s infinite;
+}
+
+.coffee-beans::before {
+  top: 20%;
+  left: 20%;
+  animation-delay: -2s;
+}
+
+.coffee-beans::after {
+  bottom: 30%;
+  right: 25%;
+  animation-delay: -4s;
+}
+
+.pattern-coffee-beans {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0C13.432 0 0 13.432 0 30c0 16.568 13.432 30 30 30s30-13.432 30-30C60 13.432 46.568 0 30 0zm0 45c-8.284 0-15-6.716-15-15 0-8.284 6.716-15 15-15s15 6.716 15 15c0 8.284-6.716 15-15 15z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+/* Add warm glow effect */
+.warm-glow {
+  box-shadow: 0 0 15px rgba(255, 166, 0, 0.1),
+              0 0 30px rgba(255, 166, 0, 0.05),
+              0 0 45px rgba(255, 166, 0, 0.025);
+}
+
+/* Custom scrollbar for the coffee theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2C1810;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4A2C2A;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6B3D3D;
 }

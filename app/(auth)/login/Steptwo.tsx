@@ -53,22 +53,23 @@ function Steptwo({ setSigninState }: SteptwoProps) {
 
     return (
         <div className='flex flex-col justify-center items-center'>
-            <Image src="/img/logo/logo.webp" width={100} height={100} alt="logo" />
-            <ArrowLeftIcon className='absolute top-2 left-2 cursor-pointer' onClick={() => setSigninState(0)} />
-            {user.isExisted ? <h1 className="mt-6 font-extrabold text-md text-gray-800">خوش آمدید! رمز ورود خود را وارد کنید</h1>
-                :
-                <h1 className="mt-6 font-extrabold text-md text-gray-800">خوشحالیم که شما در حال عضو شدن به کاسبچی هستید</h1>
+            <Image src="/img/logo/logo.webp" width={100} height={100} alt="logo" className="drop-shadow-lg" />
+            <ArrowLeftIcon className='absolute top-2 left-2 cursor-pointer text-white/80 hover:text-white transition-colors duration-300' onClick={() => setSigninState(0)} />
+            {user.isExisted ? 
+                <h1 className="mt-6 font-extrabold text-2xl text-white">خوش آمدید!</h1>
+            :
+                <h1 className="mt-6 font-extrabold text-2xl text-white">به کاسبچی خوش آمدید</h1>
             }
-            <p className="mt-3 text-gray-700 text-center">لطفا رمز خود را وارد کنید.</p>
+            <p className="mt-3 text-white/90 text-center">لطفا رمز خود را وارد کنید.</p>
             <input
                 type="password"
-                className="w-full mt-6 h-12 border-2 border-gray-300 rounded-3xl outline-none px-5 text-lg focus:border-green-500 transition-colors duration-300"
+                className="w-full mt-6 h-12 bg-white/10 border-2 border-white/20 rounded-3xl outline-none px-5 text-lg text-white placeholder-white/50 focus:border-white/40 transition-colors duration-300"
                 placeholder="رمز عبور"
                 value={password}
                 onChange={(e) => setpassword(e.target.value)}
             />
             <button
-                className="w-full mt-6 h-12 bg-green-600 hover:bg-green-700 transition-colors duration-300 text-white font-semibold rounded-3xl shadow-md"
+                className="w-full mt-6 h-12 bg-[#8B4513] hover:bg-[#A0522D] transition-colors duration-300 text-white font-semibold rounded-3xl shadow-md warm-glow"
                 onClick={handleSubmit}
             >
                 {isLoading ? (
@@ -78,7 +79,6 @@ function Steptwo({ setSigninState }: SteptwoProps) {
                 )}
             </button>
         </div>
-
     );
 }
 
