@@ -2,8 +2,7 @@
 
 import React from 'react'
 import useSWR from 'swr'
-import PartOdd from './PartOdd'
-import PartEven from './PartEven'
+import PartOfProfile from './PartOfProfile'
 
 type WholesalerData = [string, any][]
 
@@ -47,11 +46,7 @@ function ProfileInfoTab() {
     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 rounded-xl p-4'>
       {wholesalerDataList.map(([key, value], index) => {
         const title = parts[key] || key
-        return index % 2 === 0 ? (
-          <PartOdd key={index} title={title} value={value} />
-        ) : (
-          <PartEven key={index} title={title} value={value} />
-        )
+        return <PartOfProfile key={index} title={title} value={value} />
       })}
     </div>
   )

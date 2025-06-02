@@ -1,7 +1,7 @@
 import translations from "@/lib/translations";
 import { Check, X } from "lucide-react";
 
-export default function PartEven({ title, value }: { title: string, value: any }) {
+export default function PartOfProfile({ title, value }: { title: string, value: any }) {
   let displayValue: string | undefined;
   let isBoolean = typeof value === "boolean";
 

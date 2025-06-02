@@ -1,9 +1,92 @@
-import React from 'react'
+'use client';
 
-function ProfileBussinesTab() {
-  return (
-    <div>تب اطلاعات کسب و کار</div>
-  )
+import React, { useState } from 'react';
+import useSWR from 'swr';
+import { Button } from '../ui/button';
+import Modal from '../ui/modal';
+import BusinessInfoForm from './BusinessInfoForm';
+import PartOfProfile from './PartOfProfile';
+
+const parts = {
+  store_name: "نام فروشگاه",
+  store_address: "آدرس فروشگاه",
+  store_phone: "شماره تلفن فروشگاه",
+  store_email: "ایمیل فروشگاه",
+  website: "وبسایت فروشگاه",
+  about_store: "درباره فروشگاه",
+  logo_url: "لوگو فروشگاه",
+  working_days: "روزهای کاری فروشگاه",
 }
 
-export default ProfileBussinesTab
+const fetcher = async (url: string) => {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error('Failed to fetch');
+  const data = await res.json();
+  console.log(data.data);
+
+  return data.data;
+};
+
+function ProfileBussinesTab() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const {
+    data,
+    error,
+    isLoading,
+    isValidating,
+    mutate
+  } = useSWR('/api/getwholesalerbusinessinfo', fetcher, {
+    dedupingInterval: 60000,
+  });
+
+  const refreshData = () => {
+    setModalOpen(false)
+    mutate()
+  }
+
+  if (isLoading || isValidating) return (
+    <div className='flex justify-center items-center min-h-[200px]'>
+      <div className="animate-pulse text-gray-400">در حال بارگذاری...</div>
+    </div>
+  );
+
+  if (error) return (
+    <div className='flex justify-center items-center min-h-[200px]'>
+      <div className="animate-pulse text-red-400">خطا در بارگذاری اطلاعات</div>
+    </div>
+  );
+
+  if (data === null) {
+    return (
+      <div className='flex flex-col gap-4 justify-center items-center min-h-[200px]'>
+        <div>اطلاعات کسب‌وکار ثبت نشده است</div>
+        <Button onClick={() => setModalOpen(true)} className='text-white'>
+          ثبت اطلاعات کسب‌وکار
+        </Button>
+
+        {modalOpen && (
+          <Modal open={modalOpen} onOpenChange={setModalOpen} title="فرم ثبت اطلاعات کسب‌وکار">
+            <BusinessInfoForm
+              refreshData={refreshData}
+            />
+          </Modal>
+        )}
+
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className=" text-zinc-700">اطلاعات کسب‌وکار شما:</div>
+      <div className='p-4 space-y-2 grid grid-cols-1 md:grid-cols-2 gap-4'>
+        {Object.entries(data).filter(([key]) => !["id", "updated_at", "user_id"].includes(key)).map(([key, value]) => (
+          <PartOfProfile key={key} title={parts[key as keyof typeof parts]} value={value} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+export default ProfileBussinesTab;
