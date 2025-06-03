@@ -18,7 +18,6 @@ function BusinessInfoForm({
     const [website, setWebsite] = useState('');
     const [about, setAbout] = useState('');
     const [logo, setLogo] = useState('');
-    const [workingdays, setWorkingdays] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const toast = useToast()
 
@@ -34,7 +33,6 @@ function BusinessInfoForm({
                 website,
                 about,
                 logo,
-                workingdays
             })
         });
 
@@ -83,10 +81,6 @@ function BusinessInfoForm({
       <div>
         <label htmlFor="logo">لوگو</label>
         <Input className='border-gray-600' type="file" id="logo" />
-      </div>
-      <div>
-        <label htmlFor="workingdays">روزهای کاری</label>
-        <Input className='border-gray-600' type="text" id="workingdays" value={workingdays} onChange={(e) => setWorkingdays(e.target.value)} />
       </div>
       <Button type='submit'>
         {isLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : 'ارسال'}

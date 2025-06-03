@@ -14,17 +14,15 @@ export async function POST(request: NextRequest) {
   const secret = new TextEncoder().encode(JWT_SECRET);
   const { payload } = await jwtVerify(token, secret);
 
-  const { name, address, phone, website, about, logo } =
+  const { bankname, cardNumber, shebaNumber, accountHolderName } =
     await request.json();
 
-  const { data, error } = await supabase.rpc("update_wholesaler_business_info", {
+  const { data, error } = await supabase.rpc("save_wholesaler_financial", {
     p_user_id: payload.id,
-    p_name: name,
-    p_address: address,
-    p_phone: phone,
-    p_website: website ? website : null,
-    p_about: about,
-    p_logo: logo ? logo : null,
+    p_bank_name: bankname,
+    p_card_number: cardNumber,
+    p_sheba_number: shebaNumber,
+    p_account_holder_name: accountHolderName
   });
 
   if (error) {
