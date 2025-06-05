@@ -53,7 +53,7 @@ function FromAuthLevelOne() {
     } else {
       toast.toast({
         title:'خطا',
-        description: data.message,
+        description: 'کد ملی تکراری است',
         variant: 'default',
         className: 'bg-red-500 text-white'
       })

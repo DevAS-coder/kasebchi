@@ -44,7 +44,9 @@ export async function POST(request: NextRequest) {
   }
 
   if (data) {
-    console.log(data);
+    if (!data.success) {
+      return NextResponse.json({ success: false, message: "کد ملی تکراری است", data: data }, { status: 200 });
+    }
     
     return NextResponse.json({ success: true, message: "اطلاعات ثبت شد", data: data }, { status: 200 });
   }
