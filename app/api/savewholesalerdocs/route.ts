@@ -14,20 +14,17 @@ export async function POST(request: NextRequest) {
   const secret = new TextEncoder().encode(JWT_SECRET);
   const { payload } = await jwtVerify(token, secret);
 
-  const { name, address, phone, website, about, logoPath } =
+  const { BNCPath, FNPath, LisenscePath } =
     await request.json();
 
-  const { data, error } = await supabase.rpc("update_wholesaler_business_info", {
+  const { data, error } = await supabase.rpc("save_wholesaler_documents ", {
     p_user_id: payload.id,
-    p_name: name,
-    p_address: address,
-    p_phone: phone,
-    p_website: website ? website : null,
-    p_about: about,
-    p_logo: logoPath ? `https://ugqdmysezwjwwzmjsabv.supabase.co/storage/v1/object/public/logos/${logoPath}` : null,
+    p_national_card_front_url: `https://ugqdmysezwjwwzmjsabv.supabase.co/storage/v1/object/public/wholesaler-documents/${FNPath}`,
+    p_national_card_back_url: `https://ugqdmysezwjwwzmjsabv.supabase.co/storage/v1/object/public/wholesaler-documents/${BNCPath}`,
+    p_business_license_url: `https://ugqdmysezwjwwzmjsabv.supabase.co/storage/v1/object/public/wholesaler-documents/${LisenscePath}`,
   });
 
-  if (error) {
+  if (error) {  
     console.log(error);
     return NextResponse.json({ error: error?.message }, { status: 500 });
   }

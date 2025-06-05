@@ -18,7 +18,6 @@ export default function PartOfProfile({ title, value }: { title: string, value: 
       .join("، ");
   } else if (value.includes('jpg') || value.includes('png') || value.includes('jpeg')) {
     displayValue = 'image'
-    src = `https://ugqdmysezwjwwzmjsabv.supabase.co/storage/v1/object/public/logos/${value}`
   } else {
     displayValue = value;
   }
@@ -51,10 +50,10 @@ export default function PartOfProfile({ title, value }: { title: string, value: 
       </div>
       {!isBoolean && (
         <div className="text-base text-gray-800 break-words leading-relaxed">
-          {displayValue === 'image' && src ? (
+          {displayValue === 'image' ? (
             <div className="relative overflow-hidden rounded-lg">
               <Image 
-                src={src} 
+                src={value} 
                 alt="logo" 
                 width={100} 
                 height={100}

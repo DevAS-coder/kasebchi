@@ -28,7 +28,6 @@ function BusinessInfoForm({
     const file = e.target.files?.[0];
     if (file) {
       setLogoFile(file);
-      // Create preview URL
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
     }
@@ -37,15 +36,16 @@ function BusinessInfoForm({
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-
+  
     let logoPath = '';
-
+  
     if (logoFile) {
-      const fileName = `logos/${Date.now()}`;
+      const extension = logoFile.name.split('.').pop(); // استخراج پسوند فایل
+      const fileName = `logos/${Date.now()}.${extension}`; // اضافه کردن پسوند
       const { data, error } = await supabase.storage
-        .from('logos') 
+        .from('logos')
         .upload(fileName, logoFile);
-
+  
       if (error) {
         toast.toast({
           title: 'خطا در آپلود لوگو',
@@ -55,9 +55,9 @@ function BusinessInfoForm({
         setIsLoading(false);
         return;
       }
-
+  
       logoPath = fileName;
-    }
+    }  
 
       const response = await fetch('/api/savewholesalerbusinessinfo', {
         method: 'POST',
