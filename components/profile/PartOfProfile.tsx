@@ -16,7 +16,7 @@ export default function PartOfProfile({ title, value }: { title: string, value: 
     displayValue = value
       .map((item) => translations[item as keyof typeof translations] || item)
       .join("، ");
-  } else if (value.includes('jpg')) {
+  } else if (value.includes('jpg') || value.includes('png') || value.includes('jpeg')) {
     displayValue = 'image'
     src = `https://ugqdmysezwjwwzmjsabv.supabase.co/storage/v1/object/public/logos/${value}`
 
