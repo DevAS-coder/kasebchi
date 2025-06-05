@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
   const secret = new TextEncoder().encode(JWT_SECRET);
   const { payload } = await jwtVerify(token, secret);
 
-  const { name, address, phone, website, about, logo } =
+  const { name, address, phone, website, about, logoPath } =
     await request.json();
 
   const { data, error } = await supabase.rpc("update_wholesaler_business_info", {
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     p_phone: phone,
     p_website: website ? website : null,
     p_about: about,
-    p_logo: logo ? logo : null,
+    p_logo: logoPath ? logoPath : null,
   });
 
   if (error) {
