@@ -19,7 +19,6 @@ export default function PartOfProfile({ title, value }: { title: string, value: 
   } else if (value.includes('jpg')) {
     displayValue = 'image'
     src = `https://ugqdmysezwjwwzmjsabv.supabase.co/storage/v1/object/public/logos/${value}`
-    console.log(src);
 
   }
   else {

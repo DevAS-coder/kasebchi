@@ -29,7 +29,7 @@ function BusinessInfoForm({
     let logoPath = '';
 
     if (logoFile) {
-      const fileName = `logos/${Date.now()}_${logoFile.name}`;
+      const fileName = `logos/${Date.now()}`;
       const { data, error } = await supabase.storage
         .from('logos') 
         .upload(fileName, logoFile);
