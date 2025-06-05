@@ -10,7 +10,7 @@ type TSERVICE = {
 
 function ServicesCard({service} : {service : TSERVICE}) {
     return (
-        <div className='flex flex-col justify-center items-center transition-all duration-300 cursor-pointer bg-gray-200 dark:bg-white/10 backdrop-blur-lg rounded-3xl w-[16rem] h-[15rem] hover:scale-105'>
+        <div className='flex flex-col justify-center items-center transition-all duration-300 cursor-pointer bg-gray-200 dark:bg-white/10 backdrop-blur-lg rounded-3xl w-[10w] lg:w-[20rem] h-[15rem] hover:scale-105'>
             <div className="w-full flex justify-center items-center mb-4 relative h-[130px]">
                 <Image
                     className='drop-shadow-2xl'
