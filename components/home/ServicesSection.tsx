@@ -9,13 +9,15 @@ function ServicesSection() {
     const services = [
         { name: 'دان قهوه', Image: '/img/services/service-coffee.webp', category: 'needs', url:'coffee-beans' },
         { name: 'تجهیزات صنعتی', Image: '/img/services/service-equipment.webp', category: 'needs', url:'equipment' },
-        { name: 'ظروف کافه', Image: '/img/services/service-disposable.webp', category: 'needs', url:'disposable' },
+        { name: 'ظروف کافه', Image: '/img/services/service-dishes.webp', category: 'needs', url:'dishes' },
+        { name: 'ظروف یکبار مصرف', Image: '/img/services/service-disposable.webp', category: 'needs', url:'disposable' },
         { name: 'کیک و دسر', Image: '/img/services/service-dessert.webp', category: 'needs', url:'dessert' },
         { name: 'طراح دکور', Image: '/img/services/service-decor.webp', category: 'decor', url:'decor' },
         { name: 'طراح منو', Image: '/img/services/service-menu.webp', category: 'decor', url:'menu-designer'    },
         { name: 'راه‌اندازی کافه', Image: '/img/services/service-setup.webp', category: 'decor', url:'cafe-setup'    },
         { name: 'کارشناس فروش', Image: '/img/services/service-sales.webp', category: 'support', url:'sales-expert' },
         { name: 'نیروی انسانی', Image: '/img/services/service-staff.webp', category: 'support', url:'staff' },
+        { name: 'تعمیرات', Image: '/img/services/service-repair.webp', category: 'support', url:'repairs' },
         { name: 'پشتیبانی', Image: '/img/services/service-support.webp', category: 'support', url:'support' },
     ]
 
