@@ -1,6 +1,7 @@
 import translations from "@/lib/translations";
 import { Check, X } from "lucide-react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function PartOfProfile({ title, value }: { title: string, value: any }) {
   let displayValue: string | undefined;
@@ -8,7 +9,6 @@ export default function PartOfProfile({ title, value }: { title: string, value: 
   let isBoolean = typeof value === "boolean";
 
   console.log(value);
-
 
   if (isBoolean) {
     displayValue = value ? "انجام شده" : "انجام نشده";
@@ -19,27 +19,53 @@ export default function PartOfProfile({ title, value }: { title: string, value: 
   } else if (value.includes('jpg') || value.includes('png') || value.includes('jpeg')) {
     displayValue = 'image'
     src = `https://ugqdmysezwjwwzmjsabv.supabase.co/storage/v1/object/public/logos/${value}`
-
-  }
-  else {
+  } else {
     displayValue = value;
   }
 
   return (
-    <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100">
-      <div className="flex items-center justify-between mb-2">
-        <div className="text-sm font-medium text-gray-600">{title}</div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="bg-white rounded-xl p-5 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100/50 backdrop-blur-sm"
+    >
+      <div className="flex items-center justify-between mb-3">
+        <div className="text-sm font-semibold text-gray-700 tracking-wide">{title}</div>
         {isBoolean && (
-          <div className={`flex items-center gap-1 text-xs font-medium rounded-full px-2 py-0.5 ${value ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'}`}>
-            {value ? <Check className="w-3 h-3" /> : <X className="w-3 h-3" />}
-          </div>
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className={`flex items-center gap-1.5 text-xs font-medium rounded-full px-3 py-1 
+              ${value 
+                ? 'bg-green-50 text-green-600 border border-green-200' 
+                : 'bg-red-50 text-red-600 border border-red-200'
+              }`}
+          >
+            {value 
+              ? <Check className="w-3.5 h-3.5" /> 
+              : <X className="w-3.5 h-3.5" />
+            }
+            <span>{displayValue}</span>
+          </motion.div>
         )}
       </div>
       {!isBoolean && (
-        <div className="text-base text-gray-900 break-words">
-          {displayValue === 'image' && src ? <Image src={src} alt="logo" width={100} height={100} /> : displayValue}
+        <div className="text-base text-gray-800 break-words leading-relaxed">
+          {displayValue === 'image' && src ? (
+            <div className="relative overflow-hidden rounded-lg">
+              <Image 
+                src={src} 
+                alt="logo" 
+                width={100} 
+                height={100}
+                className="object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          ) : (
+            <span className="font-medium">{displayValue}</span>
+          )}
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }

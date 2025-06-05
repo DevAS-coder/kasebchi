@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Upload } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/lib/supabase';
+import { cn } from '@/lib/utils';
 
 function BusinessInfoForm({
   refreshData
@@ -19,8 +20,19 @@ function BusinessInfoForm({
   const [website, setWebsite] = useState('');
   const [about, setAbout] = useState('');
   const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const toast = useToast()
+
+  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setLogoFile(file);
+      // Create preview URL
+      const url = URL.createObjectURL(file);
+      setPreviewUrl(url);
+    }
+  };
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -102,20 +114,39 @@ function BusinessInfoForm({
           <Input className='border-gray-600' type="text" id="about" value={about} onChange={(e) => setAbout(e.target.value)} />
         </div>
         <div>
-          <label htmlFor="logo">لوگو</label>
-          <Input
-            className='border-gray-600'
-            type="file"
-            id="logo"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files?.[0]
-              if (file) {
-                setLogoFile(file)
-              }
-            }}
-          />
-
+          <label htmlFor="logo" className="block mb-2">لوگو</label>
+          <div 
+            className={cn(
+              "relative border-2 border-dashed rounded-lg p-4 text-center cursor-pointer hover:bg-gray-50 transition-colors",
+              "min-h-[150px] flex flex-col items-center justify-center gap-2"
+            )}
+            onClick={() => document.getElementById('logo')?.click()}
+          >
+            <input
+              type="file"
+              id="logo"
+              accept="image/*"
+              onChange={handleLogoChange}
+              className="hidden"
+            />
+            
+            {previewUrl ? (
+              <div className="relative w-full h-full flex flex-col items-center">
+                <img 
+                  src={previewUrl} 
+                  alt="Logo preview" 
+                  className="max-h-[120px] object-contain mb-2"
+                />
+                <p className="text-sm text-gray-500">برای تغییر تصویر کلیک کنید</p>
+              </div>
+            ) : (
+              <>
+                <Upload className="w-8 h-8 text-gray-400" />
+                <p className="text-sm text-gray-500">برای آپلود لوگو کلیک کنید یا فایل را اینجا رها کنید</p>
+                <p className="text-xs text-gray-400">فرمت‌های مجاز: JPG، PNG</p>
+              </>
+            )}
+          </div>
         </div>
         <Button type='submit'>
           {isLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : 'ارسال'}

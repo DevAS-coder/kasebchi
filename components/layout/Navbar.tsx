@@ -52,8 +52,9 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-all duration-300 bg-white dark:bg-coffee-dark-bg ${scrolled ? "shadow-md" : ""
-        }`}
+      className={`sticky top-0 z-40 transition-all duration-300 bg-white/95 backdrop-blur-sm dark:bg-coffee-dark-bg/95 ${
+        scrolled ? "shadow-md dark:shadow-black/20" : ""
+      }`}
     >
       <nav className="md:container mx-auto" aria-label="Top">
         {/* Header Row 1 */}
@@ -121,15 +122,15 @@ const Navbar = () => {
 
         {/* Mobile Search Bar - Expandable */}
         {isSearchOpen && (
-          <div className="md:hidden w-full py-2 px-4 border-b border-gray-200 dark:border-gray-700 transition-all duration-300">
+          <div className="md:hidden w-full py-2 px-4 border-b border-gray-200 dark:border-coffee-dark-accent/50 transition-all duration-300">
             <div className="relative">
               <input
                 type="text"
                 placeholder="جستجو..."
-                className="w-full py-2 px-4 pr-10 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full py-2 px-4 pr-10 rounded-md border border-gray-300 dark:border-coffee-dark-accent bg-white/50 dark:bg-coffee-dark-sidebar/50 backdrop-blur-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:focus:ring-primary/70 transition-all duration-300"
                 autoFocus
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 dark:text-gray-500" />
             </div>
           </div>
         )}

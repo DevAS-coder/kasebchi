@@ -56,7 +56,7 @@ const Layout = ({ children }: LayoutProps) => {
   }, [])
 
   if (!isFetched) return (
-    <div className='flex justify-center items-center h-screen text-black'>
+    <div className='dark:bg-coffee-dark-bg dark:text-white flex justify-center items-center h-screen text-black'>
       <p>در حال اعتبارسنجی اطلاعات...</p>
     </div>
   );

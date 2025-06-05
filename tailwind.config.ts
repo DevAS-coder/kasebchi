@@ -57,9 +57,9 @@ export default {
 					DEFAULT: '#6F4E37',
 					dark: '#5A3A25', 
 					mocha: '#DAB89F',
-					'dark-bg': '#8d5f38',
-					'dark-sidebar': '#2b1900',
-					'dark-accent': '#2b1900'
+					'dark-bg': '#251B14',
+					'dark-sidebar': '#1A130E',
+					'dark-accent': '#3D2A1F'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
