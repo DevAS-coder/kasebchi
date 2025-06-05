@@ -79,7 +79,7 @@ function ServicesSection() {
                         ))}
                     </div>
 
-                    <div className='grid md:grid-cols-5 gap-5 mt-10'>
+                    <div className='grid md:grid-cols-4 gap-5 mt-10'>
                         <AnimatePresence mode='wait'>
                             {filteredServices.map(service => (
                                 <motion.div
