@@ -210,7 +210,7 @@ const Navbar = () => {
                     href={link.href}
                     className={`px-3 py-2 flex items-center justify-between rounded-md text-md font-medium ${pathname === link.href
                         ? "bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary"
-                        : "text-gray-600 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-primary"
+                        : "text-gray-600 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-white dark:hover:text-gray-800"
                       }`}
                     onClick={(e) => {
                       if (link.subCategories) {
