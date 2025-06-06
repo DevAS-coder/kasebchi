@@ -62,7 +62,7 @@ const HeroSection = () => {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row justify-center gap-4"
+          className="flex justify-center gap-4"
         >
           <Button
             asChild
@@ -71,6 +71,7 @@ const HeroSection = () => {
           >
             <Link href="/products">شروع خرید</Link>
           </Button>
+          {/*
           <Button
             asChild
             variant="outline"
@@ -79,6 +80,7 @@ const HeroSection = () => {
           >
             <Link href="/wholesalers">مشاهده عمده‌فروشان</Link>
           </Button>
+          */}
         </motion.div>
       </div>
 

@@ -11,7 +11,7 @@ const Home = () => {
       <IntroSection />
       <ServicesSection/>
       <BenefitsSection/>
-      <WholesalersSection />
+      {/* <WholesalersSection /> */}
     </main>
   );
 };
