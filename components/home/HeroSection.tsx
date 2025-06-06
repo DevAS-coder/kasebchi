@@ -69,7 +69,7 @@ const HeroSection = () => {
             size="lg"
             className="bg-accent hover:bg-accent/90 text-primary font-bold px-12 py-6 rounded-full transform transition-all duration-300 hover:scale-105 text-lg"
           >
-            <Link href="/products">شروع خرید</Link>
+            <Link href="/categories">شروع خرید</Link>
           </Button>
           {/*
           <Button
