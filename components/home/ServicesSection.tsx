@@ -62,7 +62,7 @@ function ServicesSection() {
                         خدمات کاسب‌چی
                     </h2>
 
-                    <div className='gap-2 -mb-7 flex-wrap flex justify-center items-center md:gap-5 mt-3'>
+                    <div className='w-3/4 md:w-2/4 mx-auto grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-5 mt-3'>
                         {['all', 'needs', 'decor', 'support'].map(type => (
                             <button
                                 key={type}
