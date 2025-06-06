@@ -183,7 +183,11 @@ const Navbar = () => {
           {/* Additional options can be added here */}
           <div className="flex items-center space-x-4 space-x-reverse">
             <Link href="/dashboard">
-              <Button variant="ghost" className="dark:text-gray-300 dark:hover:text-primary">
+              <Button 
+                variant="default" 
+                className="bg-primary text-white font-bold px-6 py-2 rounded-lg shadow-lg border-2 border-primary hover:bg-primary/90 hover:scale-105 transition-all duration-200 dark:bg-yellow-400 dark:text-black dark:border-yellow-400 dark:hover:bg-yellow-300"
+                style={{ boxShadow: '0 4px 16px 0 rgba(255, 193, 7, 0.15)' }}
+              >
                 فروشنده شوید
               </Button>
             </Link>
@@ -229,8 +233,7 @@ const Navbar = () => {
               ))}
               <Link
                 href="/dashboard"
-                className="px-3 py-2 rounded-md text-md font-medium text-gray-600 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-primary"
-                onClick={() => setIsMenuOpen(false)}
+                className="px-3 py-2 rounded-md text-md font-bold bg-primary text-white shadow-lg border-2 border-primary hover:bg-primary/90 hover:scale-105 transition-all duration-200 dark:bg-yellow-400 dark:text-black dark:border-yellow-400 dark:hover:bg-yellow-300 text-center"
               >
                 فروشنده شوید
               </Link>
