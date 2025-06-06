@@ -37,17 +37,17 @@ const IntroSection = () => {
       </div>
 
       <div className="container mx-auto px-4 relative">
-        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <h2 className="text-4xl font-bold mb-6 text-primary dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
+        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-8 text-primary dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80 drop-shadow-lg">
             معرفی پلتفرم کاسب‌چی
           </h2>
           <p className="dark:text-white/90 text-gray-700 max-w-3xl mx-auto text-lg leading-relaxed">
-            کاسبچی، اولین پلتفرم تخصصی ارتباط بین عمده‌فروشان و خریداران قهوه
-             در ایران است که با هدف ایجاد شفافیت، سهولت و اطمینان در معاملات قهوه راه‌اندازی شده است.
+            کاسبچی، اولین پلتفرم تخصصی ارتباط بین <span className="font-bold text-primary dark:text-yellow-400">عمده‌فروشان</span> و <span className="font-bold text-primary dark:text-yellow-400"> خریداران</span> <span className="font-bold text-primary dark:text-yellow-400">قهوه</span>
+             در ایران است که با هدف ایجاد <span className="font-bold text-primary dark:text-yellow-400">شفافیت</span>، <span className="font-bold text-primary dark:text-yellow-400">سهولت</span> و <span className="font-bold text-primary dark:text-yellow-400">اطمینان</span> در معاملات قهوه راه‌اندازی شده است.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
             {
               icon: <Coffee className="h-7 w-7" />,
@@ -70,18 +70,18 @@ const IntroSection = () => {
           ].map((item, index) => (
             <div 
               key={index}
-              className={`group bg-white/50 dark:bg-coffee-dark-accent/50 backdrop-blur-sm rounded-xl p-8 text-center transition-all duration-700 shadow-lg hover:shadow-2xl ${
+              className={`group bg-white/70 dark:bg-coffee-dark-accent/60 backdrop-blur-md rounded-2xl p-10 text-center transition-all duration-700 shadow-xl hover:shadow-2xl border border-primary/10 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               } hover:-translate-y-3`}
               style={{ transitionDelay: `${item.delay}ms` }}
             >
-              <div className="bg-gradient-to-br from-primary to-primary/80 inline-flex p-4 rounded-xl text-white mb-6 transform transition-transform group-hover:scale-110 group-hover:rotate-3">
+              <div className="bg-gradient-to-br from-primary to-primary/80 inline-flex p-5 rounded-2xl text-white mb-6 transform transition-transform group-hover:scale-110 group-hover:rotate-3 shadow-md">
                 {item.icon}
               </div>
-              <h3 className="text-2xl font-bold dark:hover:text-white mb-4 text-primary dark:text-white transition-colors">
+              <h3 className="text-2xl font-bold dark:hover:text-white mb-4 text-primary dark:text-white transition-colors drop-shadow">
                 {item.title}
               </h3>
-              <p className="text-gray-600 dark:text-white/80 leading-relaxed">
+              <p className="text-gray-600 dark:text-white/80 leading-relaxed text-base md:text-lg">
                 {item.description}
               </p>
             </div>
