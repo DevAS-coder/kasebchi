@@ -35,6 +35,7 @@ const navigation = [
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isSubCategoryOpen, setisSubCategoryOpen] = useState(false);
   const pathname = usePathname();
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -54,9 +55,8 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-all duration-300 bg-white/95 backdrop-blur-sm dark:bg-coffee-dark-bg/95 ${
-        scrolled ? "shadow-md dark:shadow-black/20" : ""
-      }`}
+      className={`sticky top-0 z-40 transition-all duration-300 bg-white/95 backdrop-blur-sm dark:bg-coffee-dark-bg/95 ${scrolled ? "shadow-md dark:shadow-black/20" : ""
+        }`}
     >
       <nav className="md:container mx-auto" aria-label="Top">
         {/* Header Row 1 */}
@@ -82,7 +82,7 @@ const Navbar = () => {
             <Link href="/" className="flex items-center">
               <div className="flex flex-row justify-center items-center text-2xl font-bold text-primary dark:text-white">
                 <img className="mr-3 md:mr-0" src="./img/logo/logo.webp" width={100} alt="کاسب‌چی" />
-            
+
               </div>
             </Link>
 
@@ -151,8 +151,8 @@ const Navbar = () => {
                 <Link
                   href={link.href}
                   className={`text-md font-medium transition-colors hover:text-primary flex items-center ${pathname === link.href || (link.subCategories && pathname.startsWith(link.href))
-                      ? "text-primary dark:text-yellow-400 border-b-2 border-primary dark:border-yellow-400"
-                      : "text-gray-600 dark:text-gray-300"
+                    ? "text-primary dark:text-yellow-400 border-b-2 border-primary dark:border-yellow-400"
+                    : "text-gray-600 dark:text-gray-300"
                     }`}
                 >
                   {link.name}
@@ -185,8 +185,8 @@ const Navbar = () => {
           {/* Additional options can be added here */}
           <div className="flex items-center space-x-4 space-x-reverse">
             <Link href="/dashboard">
-              <Button 
-                variant="default" 
+              <Button
+                variant="default"
                 className="bg-primary text-white font-bold px-6 py-2 rounded-lg shadow-lg border-2 border-primary hover:bg-primary/90 hover:scale-105 transition-all duration-200 dark:bg-yellow-400 dark:text-black dark:border-yellow-400 dark:hover:bg-yellow-300"
                 style={{ boxShadow: '0 4px 16px 0 rgba(255, 193, 7, 0.15)' }}
               >
@@ -208,24 +208,41 @@ const Navbar = () => {
                 <div key={link.name} className="flex flex-col">
                   <Link
                     href={link.href}
-                    className={`px-3 py-2 rounded-md text-md font-medium ${pathname === link.href
+                    className={`px-3 py-2 flex items-center justify-between rounded-md text-md font-medium ${pathname === link.href
                         ? "bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary"
                         : "text-gray-600 hover:bg-gray-100 hover:text-primary dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-primary"
                       }`}
-                    onClick={() => !link.subCategories && setIsMenuOpen(false)}
+                    onClick={(e) => {
+                      if (link.subCategories) {
+                        e.preventDefault();
+                        setisSubCategoryOpen(prev => !prev); 
+                      } else {
+                        setisSubCategoryOpen(false);
+                        setIsMenuOpen(false); 
+                      }
+                    }}
                   >
-                    {link.name}
+                    <span className="flex items-center gap-1">
+                      {link.name}
+                      {link.subCategories && (
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform duration-200 ${isSubCategoryOpen ? "rotate-180" : ""
+                            } group-hover:rotate-180`}
+                        />
+                      )}
+                    </span>
                   </Link>
+
 
                   {/* Mobile Submenu */}
                   {link.subCategories && (
-                    <div className="mr-4 mt-1 mb-2 border-r-2 border-gray-200 dark:border-gray-700 pr-2">
+                    <div className={`mr-4 mt-1 transition-all duration-300 mb-2 overflow-hidden border-r-2 border-gray-200 dark:border-gray-700 pr-2 ${isSubCategoryOpen ? "h-96" : "h-0 -mt-2"}`}>
                       {link.subCategories.map((subCategory) => (
                         <Link
                           key={subCategory.name}
                           href={subCategory.href}
                           className="block px-3 py-1.5 text-sm text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary"
-                          onClick={() => setIsMenuOpen(false)}
+                          onClick={() => {setIsMenuOpen(false); setisSubCategoryOpen(false)}}
                         >
                           {subCategory.name}
                         </Link>
