@@ -16,13 +16,15 @@ const navigation = [
     subCategories: [
       { name: "دانه قهوه", href: "/categories/coffee-beans" },
       { name: "تجهیزات صنعتی", href: "/categories/equipment" },
-      { name: "لوازم کافه", href: "/categories/disposable" },
+      { name: "ظروف کافه", href: "/categories/dishes" },
+      { name: "ظروف یکبار مصرف", href: "/categories/disposable" },
       { name: "کیک و دسر", href: "/categories/dessert" },
       { name: "طراحی دکور", href: "/categories/decor" },
       { name: "طراح منو", href: "/categories/menu-designer" },
       { name: "راه‌اندازی کافه", href: "/categories/cafe-setup" },
       { name: "کارشناس فروش", href: "/categories/sales-expert" },
       { name: "منابع انسانی", href: "/categories/staff" },
+      { name: "تعمیرات", href: "/categories/repairs" },
       { name: "پشتیبانی", href: "/categories/support" },
     ]
   },
