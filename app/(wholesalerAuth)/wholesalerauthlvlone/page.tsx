@@ -10,6 +10,7 @@ function FromAuthLevelOne() {
   const [firstName, setFirstName] = useState<string>("")
   const [lastName, setLastName] = useState<string>("")
   const [nationalId, setNationalId] = useState<string>("")
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const toast = useToast()
   const router = useRouter()
 
@@ -39,6 +40,7 @@ function FromAuthLevelOne() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsLoading(true)
     const response = await fetch("/api/sendwholesalerdata", {
       method: "POST",
       body: JSON.stringify({ firstName, lastName, nationalId, selectedCategories }),
@@ -49,8 +51,10 @@ function FromAuthLevelOne() {
     const data = await response.json()
     
     if (data.success) {
+      setIsLoading(false)
       router.push("/dashboard")
     } else {
+      setIsLoading(false)
       toast.toast({
         title:'خطا',
         description: 'کد ملی تکراری است',
