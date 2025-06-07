@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import { X } from "lucide-react"
+import { Loader2, X } from "lucide-react"
 import { useToast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -189,7 +189,7 @@ function FromAuthLevelOne() {
                   type="submit"
                   className="w-full md:w-auto px-8 py-3 bg-[#8B4513] hover:bg-[#A0522D] transition-colors duration-300 text-white font-semibold rounded-3xl shadow-md warm-glow"
                 >
-                  ثبت اطلاعات
+                  {isLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : 'ثبت اطلاعات'}
                 </button>
               </div>
             </form>
