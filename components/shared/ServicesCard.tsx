@@ -37,7 +37,7 @@ function ServicesCard({ service }: { service: TSERVICE }) {
                 rounded-xl w-full border border-transparent
                 hover:border-gray-200 dark:hover:border-zinc-700'>
 
-                <div className='flex flex-row justify-between items-center w-full'>
+                <div className='flex flex-row justify-between items-center w-80'>
 
                 <div className="relative flex-shrink-0 w-20 h-20">
                     <Image
@@ -72,8 +72,8 @@ function ServicesCard({ service }: { service: TSERVICE }) {
                 </svg>
                 </div>
                 </div>
-                <div className='md:hidden'>
-                    {service.description}
+                <div className='md:hidden text-white text-center'>
+                    <p className='text-white text-center'>{service.description}</p>
                 </div>
             </div>
 
