@@ -56,18 +56,11 @@ function ProfileFinancialTab() {
   if (data === null) {
     return (
       <div className='flex flex-col gap-4 justify-center items-center min-h-[200px]'>
-        <div>اطلاعات مالی ثبت نشده است</div>
-        <Button onClick={() => setModalOpen(true)} className='text-white'>
-          ثبت اطلاعات مالی
-        </Button>
 
-        {modalOpen && (
-          <Modal open={modalOpen} onOpenChange={setModalOpen} title="فرم ثبت اطلاعات مالی">
+
             <FinancialInfoForm
               refreshData={refreshData}
             />
-          </Modal>
-        )}
 
       </div>
     );

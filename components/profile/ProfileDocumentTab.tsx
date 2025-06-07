@@ -57,18 +57,10 @@ function ProfileDocumentsTab() {
   if (data === null) {
     return (
       <div className='flex flex-col gap-4 justify-center items-center min-h-[200px]'>
-        <div> مدارک ثبت نشده است</div>
-        <Button onClick={() => setModalOpen(true)} className='text-white'>
-          ثبت مدارک
-        </Button>
 
-        {modalOpen && (
-          <Modal open={modalOpen} onOpenChange={setModalOpen} title="فرم ثبت مدارک">
-            <DocsInfoForm
-              refreshData={refreshData}
-            />
-          </Modal>
-        )}
+        <DocsInfoForm
+          refreshData={refreshData}
+        />
 
       </div>
     );

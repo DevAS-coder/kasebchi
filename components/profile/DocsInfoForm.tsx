@@ -121,7 +121,7 @@ function DocsInfoForm({
 
 
     return (
-        <form onSubmit={submitForm} className='flex flex-col gap-2'>
+        <form onSubmit={submitForm} className='grid grid-cols-1 md:grid-cols-2 md:gap-10 md:mt-20'>
             {/* Back National Card */}
             <div>
                 <label htmlFor="backNationalCard" className="block mb-2">پشت کارت ملی</label>
@@ -245,7 +245,7 @@ function DocsInfoForm({
                     )}
                 </div>
             </div>
-            <Button type='submit'>
+            <Button type='submit' className='mt-5 md:mt-0'>
                 {isLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : 'ارسال'}
             </Button>
         </form>

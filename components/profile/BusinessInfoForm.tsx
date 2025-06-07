@@ -92,7 +92,7 @@ function BusinessInfoForm({
 
 
     return (
-      <form onSubmit={submitForm} className='flex flex-col gap-2'>
+      <form onSubmit={submitForm} className='grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-10 md:mt-20'>
         <div>
           <label htmlFor="name">نام کسب و کار</label>
           <Input className='border-gray-600' type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -109,9 +109,9 @@ function BusinessInfoForm({
           <label htmlFor="website">وبسایت</label>
           <Input className='border-gray-600' type="text" id="website" value={website} onChange={(e) => setWebsite(e.target.value)} />
         </div>
-        <div>
+        <div className='flex flex-col '>
           <label htmlFor="about">درباره فروشگاه</label>
-          <Input className='border-gray-600' type="text" id="about" value={about} onChange={(e) => setAbout(e.target.value)} />
+          <textarea className=' border-2 border-gray-400 h-40' id="about" value={about} onChange={(e) => setAbout(e.target.value)} />
         </div>
         <div>
           <label htmlFor="logo" className="block mb-2">لوگو</label>
@@ -148,7 +148,7 @@ function BusinessInfoForm({
             )}
           </div>
         </div>
-        <Button type='submit'>
+        <Button type='submit' className='md:col-span-2 mt-5 md:mt-0'>
           {isLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : 'ارسال'}
         </Button>
       </form>

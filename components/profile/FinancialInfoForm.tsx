@@ -53,7 +53,7 @@ function FinancialInfoForm({
       
 
   return (
-    <form onSubmit={submitForm} className='flex flex-col gap-2'>
+    <form onSubmit={submitForm} className='grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-10 md:mt-20 w-full md:w-[50%]'>
       <div>
         <label htmlFor="name">نام بانک</label>
         <Input className='border-gray-600' type="text" id="name" value={bankname} onChange={(e) => setbankName(e.target.value)} />
@@ -70,7 +70,7 @@ function FinancialInfoForm({
         <label htmlFor="website">نام صاحب کارت</label>
         <Input className='border-gray-600' type="text" id="website" value={accountHolderName} onChange={(e) => setaccountHolderName(e.target.value)} />
       </div>
-      <Button type='submit'>
+      <Button type='submit' className='md:col-span-2 mt-5 md:mt-0'>
         {isLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : 'ارسال'}
       </Button>
     </form>
