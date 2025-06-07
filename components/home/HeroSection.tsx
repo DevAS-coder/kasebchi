@@ -45,8 +45,7 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-4xl md:text-5xl lg:text-7xl font-bold mb-8 leading-tight"
         >
-          هر چیزی که کافه‌‌ها نیاز دارن رو{" "}
-          <span className="text-accent">اینجا پیدا کن</span>
+          هر چیزی برای <span className="text-accent">کافه‌ت</span> نیاز داری اینجا هست
         </motion.h1>
 
         <motion.p 
