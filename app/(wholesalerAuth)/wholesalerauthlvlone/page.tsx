@@ -16,16 +16,16 @@ function FromAuthLevelOne() {
 
   const categories = [
     { value: 'coffee_beans', label: 'دان قهوه' },
-    { value: 'industrial_equipment', label: 'تجهیزات' },
+    { value: 'industrial_equipment', label: 'تجهیزات صنعتی' },
     { value: 'cafe_vessels', label: 'ظروف کافه' },
+    { value: 'disposable', label: 'ظروف یکبار مصرف' },
     { value: 'cakes_and_desserts', label: 'کیک و دسر' },
-    { value: 'decor_designers', label: 'طراحی دگور' },
-    { value: 'menu_designers', label: 'طراحی منوی' },
-    { value: 'cafe_setup_services', label: 'راه اندازی' },
+    { value: 'decor_designers', label: 'طراح دکور' },
+    { value: 'menu_designers', label: 'طراح منو' },
+    { value: 'cafe_setup_services', label: 'راه اندازی کافه' },
     { value: 'sales_experts', label: 'کارشناس فروش' },
-    { value: 'human_resources', label: 'منابع انسانی' },
+    { value: 'human_resources', label: 'نیروی انسانی' },
     { value: 'support', label: 'پشتیبانی' },
-    { value: 'disposable', label: 'مصالح یکبار مصرف' },
     { value: 'repairs', label: 'تعمیرات' },
   ]
 
