@@ -92,18 +92,18 @@ function BusinessInfoForm({
 
 
     return (
-      <form onSubmit={submitForm} className='grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-10 md:mt-20'>
+      <form onSubmit={submitForm} className='grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-10 md:mt-10'>
         <div>
-          <label htmlFor="name">نام کسب و کار</label>
-          <Input className='border-gray-600' type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+          <label htmlFor="name">نام کسب و کار *</label>
+          <Input className='border-gray-600' required type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
         </div>
         <div>
-          <label htmlFor="address">آدرس فروشگاه</label>
-          <Input className='border-gray-600' type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} />
+          <label htmlFor="address">آدرس فروشگاه *</label>
+          <Input className='border-gray-600' required type="text" id="address" value={address} onChange={(e) => setAddress(e.target.value)} />
         </div>
         <div>
-          <label htmlFor="phone">شماره تلفن</label>
-          <Input className='border-gray-600' type="text" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
+          <label htmlFor="phone">شماره تلفن *</label>
+          <Input className='border-gray-600' type="text" required id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
         </div>
         <div>
           <label htmlFor="website">وبسایت</label>

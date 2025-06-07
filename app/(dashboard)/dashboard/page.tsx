@@ -7,11 +7,11 @@ import RecentOrders from '@/components/dashboard/RecentOrders'
 function Dashboard() {
 
   return (
-    <div className="mt-16 p-6 grid gap-4 w-full">
+    <div className="mt-28 p-6 grid gap-4 w-full">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <OverviewCard title="موجودی کل" value="۱۵۰ بسته" icon={<PackageCheck />} />
-        <OverviewCard title="مشتریان فعال" value="۲۴ مشتری" icon={<Users2 />} />
-        <OverviewCard title="سفارش‌های امروز" value="۵ سفارش" icon={<ShoppingCart />} />
+        <OverviewCard title="موجودی کل" value="۰ محصول" icon={<PackageCheck />} />
+        <OverviewCard title="مشتریان فعال" value="۰ مشتری" icon={<Users2 />} />
+        <OverviewCard title="سفارش‌های امروز" value="۰ سفارش" icon={<ShoppingCart />} />
       </div>
 
       <SalesChart />

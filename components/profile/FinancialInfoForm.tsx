@@ -53,22 +53,22 @@ function FinancialInfoForm({
       
 
   return (
-    <form onSubmit={submitForm} className='grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-10 md:mt-20 w-full md:w-[50%]'>
+    <form onSubmit={submitForm} className='grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-10 md:mt-10 w-full md:w-[70%]'>
       <div>
-        <label htmlFor="name">نام بانک</label>
-        <Input className='border-gray-600' type="text" id="name" value={bankname} onChange={(e) => setbankName(e.target.value)} />
+        <label htmlFor="name">نام بانک *</label>
+        <Input className='border-gray-600' required type="text" id="name" value={bankname} onChange={(e) => setbankName(e.target.value)} />
       </div>
       <div>
-        <label htmlFor="address">شماره کارت</label>
-        <Input className='border-gray-600' type="text" id="address" value={cardNumber} onChange={(e) => setcardNumber(e.target.value)} />
+        <label htmlFor="address">شماره کارت *</label>
+        <Input className='border-gray-600' required type="text" id="address" value={cardNumber} onChange={(e) => setcardNumber(e.target.value)} />
       </div>
       <div>
-        <label htmlFor="phone">شماره شبا</label>
-        <Input className='border-gray-600' type="text" id="phone" value={shebaNumber} onChange={(e) => setshebaNumber(e.target.value)} />
+        <label htmlFor="phone">شماره شبا *</label>
+        <Input className='border-gray-600' required type="text" id="phone" value={shebaNumber} onChange={(e) => setshebaNumber(e.target.value)} />
       </div>
       <div>
-        <label htmlFor="website">نام صاحب کارت</label>
-        <Input className='border-gray-600' type="text" id="website" value={accountHolderName} onChange={(e) => setaccountHolderName(e.target.value)} />
+        <label htmlFor="website">نام صاحب کارت *</label>
+        <Input className='border-gray-600' required type="text" id="website" value={accountHolderName} onChange={(e) => setaccountHolderName(e.target.value)} />
       </div>
       <Button type='submit' className='md:col-span-2 mt-5 md:mt-0'>
         {isLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : 'ارسال'}

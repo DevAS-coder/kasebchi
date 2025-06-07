@@ -42,7 +42,7 @@ function Steptwo({ setSigninState }: SteptwoProps) {
             setTimeout(() => {
                 router.push('/dashboard');
                 router.refresh();
-            }, 1000);
+            }, 100);
 
         } else {
 

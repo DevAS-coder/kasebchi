@@ -2,9 +2,9 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'rec
 import { useEffect, useState } from 'react'
 
 const data = [
-  { name: "فروردین", فروش: 120 },
-  { name: "اردیبهشت", فروش: 98 },
-  { name: "خرداد", فروش: 160 },
+  { name: "فروردین", فروش: 0 },
+  { name: "اردیبهشت", فروش: 0 },
+  { name: "خرداد", فروش: 0 },
 ]
 
 export default function SalesChart() {

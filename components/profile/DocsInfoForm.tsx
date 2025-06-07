@@ -14,7 +14,7 @@ function DocsInfoForm({
     refreshData: () => void;
 }) {
 
-    const [backNationalCard, setbackNationalCard] = useState<File | null>(null);    
+    const [backNationalCard, setbackNationalCard] = useState<File | null>(null);
     const [frontNationalCard, setfrontNationalCard] = useState<File | null>(null);
     const [Lisensce, setLisensce] = useState<File | null>(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -121,10 +121,10 @@ function DocsInfoForm({
 
 
     return (
-        <form onSubmit={submitForm} className='grid grid-cols-1 md:grid-cols-2 md:gap-10 md:mt-20'>
+        <form onSubmit={submitForm} className='grid grid-cols-1 md:grid-cols-2 md:gap-10 md:mt-10'>
             {/* Back National Card */}
             <div>
-                <label htmlFor="backNationalCard" className="block mb-2">پشت کارت ملی</label>
+                <label htmlFor="backNationalCard" className="block mb-2">پشت کارت ملی *</label>
                 <div
                     className={cn(
                         "relative border-2 border-dashed rounded-lg p-4 text-center cursor-pointer hover:bg-gray-50 transition-colors",
@@ -136,6 +136,7 @@ function DocsInfoForm({
                         type="file"
                         id="backNationalCard"
                         accept="image/*"
+                        required
                         onChange={(e) => {
                             const file = e.target.files?.[0];
                             if (file) {
@@ -165,7 +166,7 @@ function DocsInfoForm({
             </div>
             {/* Front National Card */}
             <div>
-                <label htmlFor="frontNationalCard" className="block mb-2">جلوی کارت ملی</label>
+                <label htmlFor="frontNationalCard" className="block mb-2">جلوی کارت ملی *</label>
                 <div
                     className={cn(
                         "relative border-2 border-dashed rounded-lg p-4 text-center cursor-pointer hover:bg-gray-50 transition-colors",
@@ -177,6 +178,7 @@ function DocsInfoForm({
                         type="file"
                         id="frontNationalCard"
                         accept="image/*"
+                        required
                         onChange={(e) => {
                             const file = e.target.files?.[0];
                             if (file) {
@@ -206,7 +208,7 @@ function DocsInfoForm({
             </div>
             {/* License */}
             <div>
-                <label htmlFor="Lisensce" className="block mb-2">جواز کسب</label>
+                <label htmlFor="Lisensce" className="block mb-2">جواز کسب *</label>
                 <div
                     className={cn(
                         "relative border-2 border-dashed rounded-lg p-4 text-center cursor-pointer hover:bg-gray-50 transition-colors",
@@ -218,6 +220,7 @@ function DocsInfoForm({
                         type="file"
                         id="Lisensce"
                         accept="image/*"
+                        required
                         onChange={(e) => {
                             const file = e.target.files?.[0];
                             if (file) {
@@ -245,9 +248,11 @@ function DocsInfoForm({
                     )}
                 </div>
             </div>
-            <Button type='submit' className='mt-5 md:mt-0'>
-                {isLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : 'ارسال'}
-            </Button>
+            <div className='flex justify-center items-center w-full'>
+                <Button type='submit' className='mt-5 md:mt-0 w-full'>
+                    {isLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : 'ارسال'}
+                </Button>
+            </div>
         </form>
     );
 }

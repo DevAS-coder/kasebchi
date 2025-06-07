@@ -19,7 +19,6 @@ function ServicesCard({ service }: { service: TSERVICE }) {
             if (cardRef.current) {
                 const rect = cardRef.current.getBoundingClientRect()
                 const spaceLeft = rect.left
-                // اگر فضای چپ کمتر از 300px بود، Tooltip بره راست
                 setForceRightSide(spaceLeft < 300)
             }
         }
@@ -31,7 +30,6 @@ function ServicesCard({ service }: { service: TSERVICE }) {
 
     return (
         <div ref={cardRef} className="relative group w-full max-w-md">
-            {/* کارت اصلی */}
             <div
                 className="
       flex flex-col items-center gap-5 p-5 min-w-[20rem]
@@ -45,14 +43,12 @@ function ServicesCard({ service }: { service: TSERVICE }) {
                         <Image className="relative" src={service.Image} alt={service.name} fill />
                     </div>
 
-                    {/* نام سرویس */}
                     <div>
                         <h3 className="text-lg font-medium text-gray-900 dark:text-white truncate">
                             {service.name}
                         </h3>
                     </div>
 
-                    {/* آیکون */}
                     <div>
                         <svg
                             className="w-6 h-6 text-gray-400 transition-transform duration-300 rotate-180 group-hover:-translate-x-1"
@@ -70,13 +66,11 @@ function ServicesCard({ service }: { service: TSERVICE }) {
                     </div>
                 </div>
 
-                {/* توضیح سرویس برای موبایل */}
                 <div className="md:hidden text-white text-center">
                     <p className="text-white text-center">{service.description}</p>
                 </div>
             </div>
 
-            {/* Tooltip برای دسکتاپ */}
             {service.description && (
                 <div
                     className={`
