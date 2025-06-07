@@ -59,16 +59,16 @@ function FinancialInfoForm({
         <Input className='border-gray-600' required type="text" id="name" value={bankname} onChange={(e) => setbankName(e.target.value)} />
       </div>
       <div>
-        <label htmlFor="address">شماره کارت *</label>
-        <Input className='border-gray-600' required type="text" id="address" value={cardNumber} onChange={(e) => setcardNumber(e.target.value)} />
+        <label htmlFor="cardNumber">شماره کارت *</label>
+        <Input className='border-gray-600' required type="number" placeholder='16 رقم' maxLength={16} id="cardNumber" value={cardNumber} onChange={(e) => setcardNumber(e.target.value)} />
       </div>
       <div>
-        <label htmlFor="phone">شماره شبا *</label>
-        <Input className='border-gray-600' required type="text" id="phone" value={shebaNumber} onChange={(e) => setshebaNumber(e.target.value)} />
+        <label htmlFor="shebaNumber">شماره شبا *</label>
+        <Input className='border-gray-600' required type="number" placeholder='26 رقم' maxLength={26} id="shebaNumber" value={shebaNumber} onChange={(e) => setshebaNumber(e.target.value)} />
       </div>
       <div>
-        <label htmlFor="website">نام صاحب کارت *</label>
-        <Input className='border-gray-600' required type="text" id="website" value={accountHolderName} onChange={(e) => setaccountHolderName(e.target.value)} />
+        <label htmlFor="accountHolderName">نام صاحب کارت *</label>
+        <Input className='border-gray-600' required type="text" id="accountHolderName" value={accountHolderName} onChange={(e) => setaccountHolderName(e.target.value)} />
       </div>
       <Button type='submit' className='md:col-span-2 mt-5 md:mt-0'>
         {isLoading ? <Loader2 className='w-4 h-4 animate-spin' /> : 'ارسال'}
