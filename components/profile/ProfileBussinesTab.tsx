@@ -21,7 +21,6 @@ const fetcher = async (url: string) => {
   if (!res.ok) throw new Error('Failed to fetch');
   const data = await res.json();
 
-  console.log(data.data);
   return data.data;
 };
 

@@ -20,14 +20,11 @@ export async function GET(request: NextRequest) {
   });
 
   if (error) {
-	  console.log(error);
     return NextResponse.json({ error: error?.message }, { status: 500 });
 	
   }
   if (data.success === false) { 
-    console.log(data);
     return NextResponse.json({ success: data.success ,data : null }, { status: 200 });
   }
-  console.log(data);
   return NextResponse.json({ data: data.document_info }, { status: 200 });
 }

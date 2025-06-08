@@ -53,7 +53,6 @@ export const migrateProductsToSupabase = async () => {
       return false;
     }
     
-    console.log('Products migrated successfully');
     return true;
   } catch (error) {
     console.error('Error migrating products:', error);
@@ -73,7 +72,6 @@ export const migrateWholesalersToSupabase = async () => {
       return false;
     }
     
-    console.log('Wholesalers migrated successfully');
     return true;
   } catch (error) {
     console.error('Error migrating wholesalers:', error);

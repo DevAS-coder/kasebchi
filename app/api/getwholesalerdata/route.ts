@@ -14,7 +14,6 @@ export async function GET(request: NextRequest) {
 
     const secret = new TextEncoder().encode(JWT_SECRET);
     const { payload } = await jwtVerify(token, secret);
-    console.log('data : ' ,payload.id);
     
     const { data, error } = await supabase.rpc('get_wholesaler_info', {
         p_user_id: payload.id

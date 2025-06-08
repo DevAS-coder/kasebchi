@@ -25,18 +25,16 @@ export async function POST(request: NextRequest) {
   });
 
   if (error) {  
-    console.log(error);
     return NextResponse.json({ error: error?.message }, { status: 500 });
   }
 
   if (data.success === false) {
-    console.log(data);
     
     return NextResponse.json(
       { success: data.success},
       { status: 500 }
     );
   }
-  console.log(data);
+  
   return NextResponse.json({ data: data.message }, { status: 200 });
 }

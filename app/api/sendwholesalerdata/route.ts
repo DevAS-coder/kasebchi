@@ -8,11 +8,6 @@ export async function POST(request: NextRequest) {
   const { firstName, lastName, nationalId, selectedCategories } = await request.json();
 
   if (!firstName || !lastName || !nationalId || !selectedCategories) {
-    console.log('this is error', '111111');
-    console.log('this is firstName', firstName);
-    console.log('this is lastName', lastName);
-    console.log('this is nationalId', nationalId);
-    console.log('this is Category', selectedCategories);
     
     return NextResponse.json({ success: false, message: "خطای سرور", error: "Invalid token" }, { status: 500 });
   }
@@ -20,7 +15,6 @@ export async function POST(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
 
   if (!token) {
-    console.log('this is error', '222222');
     return NextResponse.json({ success: false, message: "خطای سرور", error: "Invalid token" }, { status: 500 });
   }
 
@@ -38,7 +32,6 @@ export async function POST(request: NextRequest) {
   });
 
   if (error) {
-    console.log(error);
     
     return NextResponse.json({ success: false, message: "خطای سرور", error: error.message }, { status: 500 });
   }
@@ -51,6 +44,5 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true, message: "اطلاعات ثبت شد", data: data }, { status: 200 });
   }
 
-  console.log(firstName, lastName, nationalId, selectedCategories);
   return NextResponse.json({ message: "Data received" });
 }

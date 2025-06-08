@@ -8,8 +8,6 @@ export default function PartOfProfile({ title, value }: { title: string, value: 
   let src: string | undefined;
   let isBoolean = typeof value === "boolean";
 
-  console.log(value);
-
   if (isBoolean) {
     displayValue = value ? "انجام شده" : "انجام نشده";
   } else if (Array.isArray(value)) {
